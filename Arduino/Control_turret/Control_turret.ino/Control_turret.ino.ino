@@ -9,14 +9,24 @@
 #define servoCAM 9 //digital pin for camera pan setpoint signal
 #define servoTILT 5 //digital pin for camera tilt setpoint signal
 #define servoGUN 6 //servo for control gun
-#define stepPin 3 //pulse pin for controlling stepper
-#define dirPin 4 //to control stepper direction
+#define stepPin1 8 //pulse pin for controlling stepper, stepPin1
+#define stepPin2 9 //pulse pin for controlling stepper, IN2
+#define stepPin3 10 //pulse pin for controlling stepper, IN3
+#define stepPin4 11 //pulse pin for controlling stepper, IN4
+
+//Function Definition
+void get_setpoint();
+void move_cam(double degree);
+void move_tilt(double degree);
+void move_stepper(double degree);
+void move_gun(double degree);
+void move_all();
 
 Servo servo_cam;  // servo object for camera yaw
 Servo servo_tilt;  // servo object for camera yaw
 Servo servo_gun; // // servo object for gun pitch
 
-const double step_RES = 1.4 ; // step resolution is 360/64 step (from motor) / 4 (driver). If you want to change the resolution, change the driver configuration
+const double step_RES = 0.044 ; // step resolution is 360/64 step (from motor) / 64 (gearbox)/2 (gear turret). If you want to change the resolution, change the driver configuration. Driver configuration 010 -> quarter step
 
 double cam_set = 0;   //for camera pan set condition
 double cam_prev = 0;
@@ -26,11 +36,18 @@ double yaw_set = 0;   //for turret yaw set condition
 double yaw_prev = 0;
 double gun_set = 90;   //for gun pitch set condition
 double gun_prev = 90;
+boolean step_dir = HIGH; //CW is HIGH
+int step_count=0;// number of steps
+//unsigned long currentMillis=0, last_time=0;
 
 void setup() {
   // Sets pins Mode
-  pinMode(stepPin,OUTPUT); 
-  pinMode(dirPin,OUTPUT);
+  //pinMode(stepPin,OUTPUT); 
+  pinMode(stepPin1, OUTPUT);
+  pinMode(stepPin2, OUTPUT);
+  pinMode(stepPin3, OUTPUT);
+  pinMode(stepPin4, OUTPUT);
+  //pinMode(dirPin,OUTPUT);
   servo_cam.attach(servoCAM);
   servo_tilt.attach(servoTILT);
   servo_gun.attach(servoGUN);
@@ -47,15 +64,14 @@ void loop() {
 }
 
 
-void get_setpoint()   //get setpoint from Server, through serial comms
-{
+void get_setpoint(){   //get setpoint from Server, through serial comms
   String serialResponse;
   serialResponse = Serial.readStringUntil('\0');
   
   char buf[sizeof(serialResponse)];
   serialResponse.toCharArray(buf, sizeof(buf));
   char *p = buf;
-  char *camc, *gunc;  //string variable for cam and gun
+  char *camc, *gunc, *tiltc, *yawc;  //string variable for cam and gun
   
   char *str;
   str = strtok_r(p, ",", &p); 
@@ -85,72 +101,147 @@ void get_setpoint()   //get setpoint from Server, through serial comms
       String s=yawc;
       yaw_set = (double) s.toFloat();
       Serial.print("yaw_set = ");
-      Serial.println(yaw_set);
+      Serial.print(yaw_set);
       str = strtok_r(p, ",", &p);
     }else if(str[0]=='g')         // get gun setpoint
     {
       gunc = &str[1];
       String s=gunc;
       gun_set = (double) s.toFloat();
+      str = strtok_r(p, ",", &p);
       Serial.print("gun_set = ");
       Serial.println(gun_set);
     }
+  }
 }
 
-void move_cam(double degree)
-{
-  double cam_setd += 90;  //map to servo degree between 0-180
+void move_cam(double degree){
+  double cam_setd = degree+ 90;  //map to servo degree between 0-180
   servo_cam.write(cam_setd);
-  cam_prev = cam_setd;
+  cam_prev = degree;
 }
 
-void move_tilt(double degree)
-{
-  double tilt_setd += 90;  //map to servo degree between 0-180
+void move_tilt(double degree){
+  double tilt_setd = degree+ 90;  //map to servo degree between 0-180
   servo_tilt.write(tilt_setd);
-  tilt_prev = tilt_setd;
+  tilt_prev = degree;
 }
 
-double move_stepper(double degree)
-{
-  
+void stepper(){
+  switch(step_count){
+     case 0:
+       digitalWrite(stepPin1, LOW); 
+       digitalWrite(stepPin2, LOW);
+       digitalWrite(stepPin3, LOW);
+       digitalWrite(stepPin4, HIGH);
+     break; 
+     case 1:
+       digitalWrite(stepPin1, LOW); 
+       digitalWrite(stepPin2, LOW);
+       digitalWrite(stepPin3, HIGH);
+       digitalWrite(stepPin4, HIGH);
+     break; 
+     case 2:
+       digitalWrite(stepPin1, LOW); 
+       digitalWrite(stepPin2, LOW);
+       digitalWrite(stepPin3, HIGH);
+       digitalWrite(stepPin4, LOW);
+     break; 
+     case 3:
+       digitalWrite(stepPin1, LOW); 
+       digitalWrite(stepPin2, HIGH);
+       digitalWrite(stepPin3, HIGH);
+       digitalWrite(stepPin4, LOW);
+     break; 
+     case 4:
+       digitalWrite(stepPin1, LOW); 
+       digitalWrite(stepPin2, HIGH);
+       digitalWrite(stepPin3, LOW);
+       digitalWrite(stepPin4, LOW);
+     break; 
+     case 5:
+       digitalWrite(stepPin1, HIGH); 
+       digitalWrite(stepPin2, HIGH);
+       digitalWrite(stepPin3, LOW);
+       digitalWrite(stepPin4, LOW);
+     break; 
+       case 6:
+       digitalWrite(stepPin1, HIGH); 
+       digitalWrite(stepPin2, LOW);
+       digitalWrite(stepPin3, LOW);
+       digitalWrite(stepPin4, LOW);
+     break; 
+     case 7:
+       digitalWrite(stepPin1, HIGH); 
+       digitalWrite(stepPin2, LOW);
+       digitalWrite(stepPin3, LOW);
+       digitalWrite(stepPin4, HIGH);
+     break; 
+     default:
+       digitalWrite(stepPin1, LOW); 
+       digitalWrite(stepPin2, LOW);
+       digitalWrite(stepPin3, LOW);
+       digitalWrite(stepPin4, LOW);
+     break; 
+    }
+    stepper_next();
+}
+
+void stepper_next(){
+  if(step_dir==HIGH){ step_count++;}
+  if(step_dir==LOW){ step_count--; }
+  if(step_count>7){step_count=0;}
+  if(step_count<0){step_count=7; }
+}
+
+
+void move_stepper(double degree){
+  Serial.println("move stepper");
   double deg = degree;
-  
+    
   //clockwise is positive
   if (degree > 0)
   {
-    digitalWrite(dirPin,HIGH);
+    step_dir=HIGH;
   }else
   {
-    digitalWrite(dirPin,LOW);
+    //digitalWrite(dirPin,LOW);
+    step_dir=LOW;
     deg = -deg;
   }
-  
+  Serial.print("degree =");
+  Serial.print(deg);
   if (degree!=0)
   {
-    int step_req = (int) (deg/step_RES);
+    float dump = deg/step_RES;
+    int step_req = (int) dump;
+    int steps_left = step_req;
+    //while (steps_left>0){
     for(int x = 0; x <= step_req; x++) {  //give pulse until degree achieved
-      digitalWrite(stepPin,HIGH); 
-      delayMicroseconds(500); 
-      digitalWrite(stepPin,LOW); 
-      delayMicroseconds(500); 
+      //currentMillis = micros();
+      delay(1); //frequensy of pulse to move stepper. Config based on datasheet
+      //if(currentMillis-last_time>=1000){
+      stepper(); 
+        //last_time=micros();
+        //steps_left--;
+       //} 
     } 
+    Serial.print(step_req);
   }
   
   yaw_set +=degree;
   yaw_prev = yaw_set;
-  delay(1);
+  delay(10);
 }
 
-void move_gun(double degree)
-{
-  double gun_setd += 90;  //map to servo degree between 0-180
+void move_gun(double degree){
+  double gun_setd = degree + 90;  //map to servo degree between 0-180
   servo_gun.write(gun_setd);
-  gun_prev = gun_set;
+  gun_prev = degree;
 }
 
-void move_all()
-{
+void move_all(){
+  Serial.print("move all");
   if(cam_set != cam_prev) //if the value change
   {
     move_cam(cam_set);
@@ -167,4 +258,6 @@ void move_all()
     move_gun(gun_set);
   }
 }
+
+
 
