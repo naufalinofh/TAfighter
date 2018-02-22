@@ -5,6 +5,11 @@
 //Library
 #include <Servo.h>
 #include <string.h>
+#include <Wire.h>
+#include "I2Cdev.h"
+#include "MPU6050.h"
+
+MPU6050 mpuc;
 
 #define servoCAM 9 //digital pin for camera pan setpoint signal
 #define servoTILT 5 //digital pin for camera tilt setpoint signal
@@ -28,12 +33,15 @@ Servo servo_gun; // // servo object for gun pitch
 
 const double step_RES = 0.044 ; // step resolution is 360/64 step (from motor) / 64 (gearbox)/2 (gear turret). If you want to change the resolution, change the driver configuration. Driver configuration 010 -> quarter step
 
+int16_t gx, gy, gz; // gyro value
 double cam_set = 0;   //for camera pan set condition
 double cam_prev = 0;
+double cam_act=0;
 double tilt_set = 90;  //for camera tilt set condition
 double tilt_prev = 90;
 double yaw_set = 0;   //for turret yaw set condition
 double yaw_prev = 0;
+double yaw_act=0;  //
 double gun_set = 90;   //for gun pitch set condition
 double gun_prev = 90;
 boolean step_dir = HIGH; //CW is HIGH
@@ -51,8 +59,13 @@ void setup() {
   servo_cam.attach(servoCAM);
   servo_tilt.attach(servoTILT);
   servo_gun.attach(servoGUN);
-  
+
   Serial.begin(9600); // serial comm to raspi
+  Wire.begin();
+
+  Serial.println("Initialize MPU");
+  mpuc.initialize();
+  Serial.println(mpuc.testConnection() ? "Connected" : "Connection failed");
   //Serial.print("Setup success");
 }
 void loop() {
@@ -86,7 +99,7 @@ void get_setpoint(){   //get setpoint from Server, through serial comms
       cam_set = (double) s.toFloat();
       Serial.print("cam_set = ");
       Serial.println(cam_set);
-      //cam_set = double(camc);
+      str = strtok_r(p, ",", &p);
     } else if(str[0]=='t')        // get camera tilt setpoint
     {
       tiltc = &str[1];
@@ -231,6 +244,7 @@ void move_stepper(double degree){
   
   yaw_set +=degree;
   yaw_prev = yaw_set;
+  yaw_act = yaw_prev;
   delay(10);
 }
 
@@ -244,7 +258,7 @@ void move_all(){
   Serial.print("move all");
   if(cam_set != cam_prev) //if the value change
   {
-    move_cam(cam_set);
+    move_cam(cam_set-yaw_act);
   }
   if(tilt_set != tilt_prev) //if the value change
   {
@@ -252,12 +266,15 @@ void move_all(){
   }
   if(yaw_set != yaw_prev) //if the value change
   {
-    move_stepper(yaw_set);
+    move_stepper(yaw_set-yaw_act);
   } else if(gun_set != gun_prev) //if the value change
   {
     move_gun(gun_set);
   }
 }
 
-
+double getYaw (*x, *y, *z){
+  mpuc.getMotion(&ax, &ay, &az, &gx, &gy, &gz);
+  val = map(ay, -17000, 17000, 0, 179);
+}
 
