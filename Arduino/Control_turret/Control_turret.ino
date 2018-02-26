@@ -5,11 +5,11 @@
 //Library
 #include <Servo.h>
 #include <string.h>
-#include <Wire.h>
-#include "I2Cdev.h"
-#include "MPU6050.h"
+//#include <Wire.h>
+//#include "I2Cdev.h"
+//#include "MPU6050.h"
 
-MPU6050 mpuc;
+//MPU6050 mpuc;
 
 #define servoCAM 9 //digital pin for camera pan setpoint signal
 #define servoTILT 5 //digital pin for camera tilt setpoint signal
@@ -61,11 +61,11 @@ void setup() {
   servo_gun.attach(servoGUN);
 
   Serial.begin(9600); // serial comm to raspi
-  Wire.begin();
+//  Wire.begin();
 
   Serial.println("Initialize MPU");
-  mpuc.initialize();
-  Serial.println(mpuc.testConnection() ? "Connected" : "Connection failed");
+  //mpuc.initialize();
+  //Serial.println(mpuc.testConnection() ? "Connected" : "Connection failed");
   //Serial.print("Setup success");
 }
 void loop() {
@@ -211,9 +211,16 @@ void stepper_next(){
 void move_stepper(double degree){
   Serial.println("move stepper");
   double deg = degree;
-    
-  //clockwise is positive
-  if (degree > 0)
+
+  if(deg >180)
+  {
+    deg -= 360;
+  }else if (deg < -180)
+  {
+    deg+= 360;
+  }
+  //CCW is positive
+  if (deg > 0)
   {
     step_dir=HIGH;
   }else
@@ -232,7 +239,8 @@ void move_stepper(double degree){
     //while (steps_left>0){
     for(int x = 0; x <= step_req; x++) {  //give pulse until degree achieved
       //currentMillis = micros();
-      delay(1); //frequensy of pulse to move stepper. Config based on datasheet
+      delay(1);
+      //frequensy of pulse to move stepper. Config based on datasheet
       //if(currentMillis-last_time>=1000){
       stepper(); 
         //last_time=micros();
@@ -242,7 +250,7 @@ void move_stepper(double degree){
     Serial.print(step_req);
   }
   
-  yaw_set +=degree;
+  //yaw_set +=degree;
   yaw_prev = yaw_set;
   yaw_act = yaw_prev;
   delay(10);
@@ -273,8 +281,9 @@ void move_all(){
   }
 }
 
+/*
 double getYaw (*x, *y, *z){
   mpuc.getMotion(&ax, &ay, &az, &gx, &gy, &gz);
   val = map(ay, -17000, 17000, 0, 179);
-}
+}\*/
 
