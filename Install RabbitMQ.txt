@@ -1,0 +1,13 @@
+Install RabbitMQ OrangePi
+
+http://www.scotthelm.com/2013/11/27/rabbit-mq-and-erlang-and-ubuntu-oh-my.html
+
+apt-get -f install
+
+apt-get install rabbitmq-server
+
+rabbitmq-plugins enable rabbitmq_management
+
+rabbitmqctl add_user anharaf anhar1234
+rabbitmqctl set_user_tags anharaf administrator
+rabbitmqctl set_permissions -p / anharaf ".*" ".*" ".*"
