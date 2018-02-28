@@ -1,3 +1,5 @@
+Install RabbitMQ OrangePi
+
 http://www.scotthelm.com/2013/11/27/rabbit-mq-and-erlang-and-ubuntu-oh-my.html
 
 apt-get -f install
