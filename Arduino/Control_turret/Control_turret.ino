@@ -25,10 +25,10 @@
 
 //Function Definition
 void get_setpoint();
-void move_cam(double degree);
-void move_tilt(double degree);
-void move_stepper(double degree);
-void move_gun(double degree);
+void move_cam(float degree);
+void move_tilt(float degree);
+void move_stepper(float degree);
+void move_gun(float degree);
 void move_all();
 
 Servo servo_cam;  // servo object for camera yaw
@@ -39,9 +39,9 @@ QMC5883 compass;
 
 //CONSTANT
 const float declinationAngle = (4.0 + (26.0 / 60.0)) / (180 / PI);   // You can find your declination on: http://magnetic-declination.com/... For Bandungdeclination angle is 4'26E (positive)
-const double step_RES = 0.044 ; // step resolution is 360/64 step (from motor) / 64 (gearbox)/2 (gear turret). If you want to change the resolution, change the driver configuration. Driver configuration 010 -> quarter step
+const float step_RES = 0.044 ; // step resolution is 360/64 step (from motor) / 64 (gearbox)/2 (gear turret). If you want to change the resolution, change the driver configuration. Driver configuration 010 -> quarter step
 
-int16_t gx, gy, gz;  // gyro value
+//int16_t gx, gy, gz;  // gyro value
 float cam_set = 0;  //for camera pan set condition
 float cam_prev = 0;
 float cam_act=0, cam_act_init=0;  //heading measurement of camera
@@ -55,6 +55,7 @@ float yaw_act=0, yaw_act_init=0;  //heading measurement of yaw
 float gun_set = 90;   //for gun pitch set condition
 float gun_prev = 90;
 bool step_dir = HIGH; //CW is HIGH
+bool compassSync = false; //check whether the compass is connect
 int step_count=0;// number of steps
 //unsigned long currentMillis=0, last_time=0;
 
@@ -69,15 +70,21 @@ void setup() {
   servo_tilt.attach(servoTILT);
   servo_gun.attach(servoGUN);
   pinMode(compassPin, OUTPUT);
+  digitalWrite(compassPin, LOW);
   
   Serial.begin(9600); // serial comm to raspi
-  
+  Serial.print("Setup start");
   //COMPASS SETUP 
-  while (!compass.begin())
+  int i = 0;
+  compassSync = compass.begin();
+  while ( (compassSync ==false) || i <5 )
   {
     Serial.println("Could not find a valid QMC5883 sensor, check wiring!");
+    compassSync = compass.begin();
+    i++;
     delay(500);
   }
+  
   Serial.println("Calibrating compass, move the compass");
   for (int i =0; i<2; i++)
   {
@@ -88,7 +95,13 @@ void setup() {
   Serial.println("Calibrating initial compass heading, be steady");
   delay(200);
   cam_act_init = getHeading('c');
+  yaw_act_init = getHeading('y');
   delay(200);
+  //Calibrating all actuator
+  move_gun(0);
+  move_cam(0);
+  move_tilt(0);
+  
   // END of COMPASS SETUP
 
   //Serial.println("Initialize MPU");
@@ -111,7 +124,7 @@ void get_setpoint(){   //get setpoint from Server, through serial comms
   
   char buf[sizeof(serialResponse)];
   serialResponse.toCharArray(buf, sizeof(buf));
-  char *p = buf;
+  char  *p = buf;
   char *camc, *gunc, *tiltc, *yawc;  //string variable for cam and gun
   
   char *str;
@@ -193,7 +206,16 @@ void move_cam(float degree){
 }
 
 void move_tilt(float degree){
-  double tilt_setd = degree+ 90;  //map to servo degree between 0-180
+  float tilt_setd = degree+ 90;  //map to servo degree between 0-180
+  // set limit for pitch
+  if (tilt_setd < 70) //degree < -20
+  {
+    tilt_setd = 70;
+  }else if (tilt_setd > 150)    //degree > 60
+  {
+    tilt_setd = 150;
+  }
+  
   servo_tilt.write(tilt_setd);
   tilt_prev = degree;
 }
@@ -268,7 +290,7 @@ void stepper_next(){
 
 void move_stepper(float degreeSet){
   Serial.println("move stepper");
-  yaw_act = getHeading('y');
+  yaw_act = normalDeg(getHeading('y')-yaw_act_init);
   float deg = normalDeg(degreeSet-yaw_act);
   float err =deg;
   float dump;
@@ -303,21 +325,28 @@ void move_stepper(float degreeSet){
         //steps_left--;
        //} 
     }
-    yaw_act = getHeading('y');
+    yaw_act = normalDeg(getHeading('y')-yaw_act_init);
     err = normalDeg(degreeSet-yaw_act);
      
      
     //Serial.print(step_req);
   } // end of 
-  
-  cam_prev = degree;
 
   //yaw_set +=degree;
   yaw_prev = yaw_act;
 }
 
 void move_gun(float degree){
-  double gun_setd = degree + 90;  //map to servo degree between 0-180
+  float gun_setd = degree + 90;  //map to servo degree between 0-180
+  // set limit for pitch
+  if (gun_setd < 70) //degree < -20
+  {
+    gun_setd = 70;
+  }else if (gun_setd > 150)    //degree > 60
+  {
+    gun_setd = 150;
+  }
+  
   servo_gun.write(gun_setd);
   gun_prev = degree;
 }
