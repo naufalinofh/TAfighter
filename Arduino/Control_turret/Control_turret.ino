@@ -5,19 +5,23 @@
 //Library
 #include <Servo.h>
 #include <string.h>
+#include <Wire.h>
+#include "QMC5883_run.h"  //For Compass Sensor QMC5883L
+
 //#include <Wire.h>
-//#include "I2Cdev.h"
-//#include "MPU6050.h"
+//#include "I2Cdev.h" //For MPU6050 
+//#include "MPU6050.h" //For MPU6050 
 
-//MPU6050 mpuc;
+//MPU6050 mpuc; //For MPU6050 
 
-#define servoCAM 9 //digital pin for camera pan setpoint signal
+#define servoCAM 3 //digital pin for camera pan setpoint signal
 #define servoTILT 5 //digital pin for camera tilt setpoint signal
 #define servoGUN 6 //servo for control gun
 #define stepPin1 8 //pulse pin for controlling stepper, stepPin1
 #define stepPin2 9 //pulse pin for controlling stepper, IN2
 #define stepPin3 10 //pulse pin for controlling stepper, IN3
 #define stepPin4 11 //pulse pin for controlling stepper, IN4
+#define compassPin A3// pin to control which compass is active, low for compass_cam, high for compass_turret
 
 //Function Definition
 void get_setpoint();
@@ -31,20 +35,26 @@ Servo servo_cam;  // servo object for camera yaw
 Servo servo_tilt;  // servo object for camera yaw
 Servo servo_gun; // // servo object for gun pitch
 
+QMC5883 compass;
+
+//CONSTANT
+const float declinationAngle = (4.0 + (26.0 / 60.0)) / (180 / PI);   // You can find your declination on: http://magnetic-declination.com/... For Bandungdeclination angle is 4'26E (positive)
 const double step_RES = 0.044 ; // step resolution is 360/64 step (from motor) / 64 (gearbox)/2 (gear turret). If you want to change the resolution, change the driver configuration. Driver configuration 010 -> quarter step
 
-int16_t gx, gy, gz; // gyro value
-double cam_set = 0;   //for camera pan set condition
-double cam_prev = 0;
-double cam_act=0;
-double tilt_set = 90;  //for camera tilt set condition
-double tilt_prev = 90;
-double yaw_set = 0;   //for turret yaw set condition
-double yaw_prev = 0;
-double yaw_act=0;  //
-double gun_set = 90;   //for gun pitch set condition
-double gun_prev = 90;
-boolean step_dir = HIGH; //CW is HIGH
+int16_t gx, gy, gz;  // gyro value
+float cam_set = 0;  //for camera pan set condition
+float cam_prev = 0;
+float cam_act=0, cam_act_init=0;  //heading measurement of camera
+float cam_sum=0, cam_last_pid=0; // for PID calculation of camera movement
+
+float tilt_set = 90;  //for camera tilt set condition
+float tilt_prev = 90;
+float yaw_set = 0;   //for turret yaw set condition
+float yaw_prev = 0;
+float yaw_act=0, yaw_act_init=0;  //heading measurement of yaw
+float gun_set = 90;   //for gun pitch set condition
+float gun_prev = 90;
+bool step_dir = HIGH; //CW is HIGH
 int step_count=0;// number of steps
 //unsigned long currentMillis=0, last_time=0;
 
@@ -55,15 +65,33 @@ void setup() {
   pinMode(stepPin2, OUTPUT);
   pinMode(stepPin3, OUTPUT);
   pinMode(stepPin4, OUTPUT);
-  //pinMode(dirPin,OUTPUT);
   servo_cam.attach(servoCAM);
   servo_tilt.attach(servoTILT);
   servo_gun.attach(servoGUN);
-
+  pinMode(compassPin, OUTPUT);
+  
   Serial.begin(9600); // serial comm to raspi
-//  Wire.begin();
+  
+  //COMPASS SETUP 
+  while (!compass.begin())
+  {
+    Serial.println("Could not find a valid QMC5883 sensor, check wiring!");
+    delay(500);
+  }
+  Serial.println("Calibrating compass, move the compass");
+  for (int i =0; i<2; i++)
+  {
+    Serial.print(i);
+    Serial.print(" .. ");
+    cam_act = getHeading('c');
+  }
+  Serial.println("Calibrating initial compass heading, be steady");
+  delay(200);
+  cam_act_init = getHeading('c');
+  delay(200);
+  // END of COMPASS SETUP
 
-  Serial.println("Initialize MPU");
+  //Serial.println("Initialize MPU");
   //mpuc.initialize();
   //Serial.println(mpuc.testConnection() ? "Connected" : "Connection failed");
   //Serial.print("Setup success");
@@ -96,7 +124,7 @@ void get_setpoint(){   //get setpoint from Server, through serial comms
     {
       camc = &str[1];
       String s=camc;
-      cam_set = (double) s.toFloat();
+      cam_set = (float) s.toFloat();
       Serial.print("cam_set = ");
       Serial.println(cam_set);
       str = strtok_r(p, ",", &p);
@@ -104,7 +132,7 @@ void get_setpoint(){   //get setpoint from Server, through serial comms
     {
       tiltc = &str[1];
       String s=tiltc;
-      tilt_set = (double) s.toFloat();
+      tilt_set = (float) s.toFloat();
       Serial.print("tilt_set = ");
       Serial.println(tilt_set);
       str = strtok_r(p, ",", &p);
@@ -112,7 +140,7 @@ void get_setpoint(){   //get setpoint from Server, through serial comms
     {
       yawc = &str[1];
       String s=yawc;
-      yaw_set = (double) s.toFloat();
+      yaw_set = (float) s.toFloat();
       Serial.print("yaw_set = ");
       Serial.print(yaw_set);
       str = strtok_r(p, ",", &p);
@@ -120,7 +148,7 @@ void get_setpoint(){   //get setpoint from Server, through serial comms
     {
       gunc = &str[1];
       String s=gunc;
-      gun_set = (double) s.toFloat();
+      gun_set = (float) s.toFloat();
       str = strtok_r(p, ",", &p);
       Serial.print("gun_set = ");
       Serial.println(gun_set);
@@ -128,13 +156,43 @@ void get_setpoint(){   //get setpoint from Server, through serial comms
   }
 }
 
-void move_cam(double degree){
-  double cam_setd = degree+ 90;  //map to servo degree between 0-180
-  servo_cam.write(cam_setd);
+void move_cam(float degree){
+  //float cam_setd = degree+ 90;  //map to servo degree between 0-180
+  //servo_cam.write(cam_setd);
+  float err;
+  const float tolerance = 3.0;
+  const float Ki_cam= 0, Kp_cam=1, Kd_cam=0;
+
+  cam_act = normalDeg(getHeading('c')-cam_act_init);
+  err = degree - cam_act; // find error between setpoint and actual measurement
+  while(!isTolerant(0,err,tolerance)) //if the error is not under tolerance of system
+  {
+    const float cam_max = 180;
+    //PID calculation
+    cam_sum +=err;  //cumulative error for integrative controller 
+    if(cam_sum > cam_max) cam_sum= cam_max;
+      else if(cam_sum < cam_max*-1) cam_sum= cam_max*-1;
+
+    float cam_pid_out = Kp_cam * err + Ki_cam * (cam_sum) + Kd_cam * (err - cam_last_pid);
+    
+    if(cam_pid_out > cam_max) cam_pid_out= cam_max;
+      else if(cam_pid_out < cam_max*-1) cam_pid_out= cam_max*-1;
+
+    cam_last_pid=err; // renew the last value
+    //end of PID calculation
+
+    //servo control eq. Input degree, Output PWM 
+    float cam_setd = map(cam_pid_out,-tolerance*2.5,tolerance*2.5,-15,15);
+    servo_cam.write(cam_setd);//move the servo
+    Serial.print("PID output ="); //DEBUG 
+    Serial.println(cam_setd);
+    cam_act = normalDeg(getHeading('c')-cam_act_init); //measure again
+    err = degree - cam_act; 
+  }
   cam_prev = degree;
 }
 
-void move_tilt(double degree){
+void move_tilt(float degree){
   double tilt_setd = degree+ 90;  //map to servo degree between 0-180
   servo_tilt.write(tilt_setd);
   tilt_prev = degree;
@@ -208,19 +266,13 @@ void stepper_next(){
 }
 
 
-void move_stepper(double degree){
+void move_stepper(float degreeSet){
   Serial.println("move stepper");
-  double deg = degree;
-
-  if(deg >180)
-  {
-    deg -= 360;
-  }else if (deg < -180)
-  {
-    deg+= 360;
-  }
-  //CCW is positive
-  if (deg > 0)
+  yaw_act = getHeading('y');
+  float deg = normalDeg(degreeSet-yaw_act);
+  float err =deg;
+  //CW is step_dir LOW
+  if (deg < 0)
   {
     step_dir=HIGH;
   }else
@@ -229,13 +281,13 @@ void move_stepper(double degree){
     step_dir=LOW;
     deg = -deg;
   }
-  Serial.print("degree =");
-  Serial.print(deg);
-  if (degree!=0)
+  //Serial.print("degree =");
+  //Serial.print(deg);
+  if (deg!=0)
   {
     float dump = deg/step_RES;
     int step_req = (int) dump;
-    int steps_left = step_req;
+
     //while (steps_left>0){
     for(int x = 0; x <= step_req; x++) {  //give pulse until degree achieved
       //currentMillis = micros();
@@ -246,17 +298,23 @@ void move_stepper(double degree){
         //last_time=micros();
         //steps_left--;
        //} 
-    } 
-    Serial.print(step_req);
+    }
+     
+     const float tolerance = 3.0;
+    //Serial.print(step_req);
+   
   }
+  // Control using feedback
   
+  cam_prev = degree;
+
   //yaw_set +=degree;
-  yaw_prev = yaw_set;
-  yaw_act = yaw_prev;
+  yaw_prev += step_req * step_RES;
+  yaw_act = getHeading('y');
   delay(10);
 }
 
-void move_gun(double degree){
+void move_gun(float degree){
   double gun_setd = degree + 90;  //map to servo degree between 0-180
   servo_gun.write(gun_setd);
   gun_prev = degree;
@@ -274,16 +332,115 @@ void move_all(){
   }
   if(yaw_set != yaw_prev) //if the value change
   {
-    move_stepper(yaw_set-yaw_act);
+    move_stepper(yaw_set);
   } else if(gun_set != gun_prev) //if the value change
   {
     move_gun(gun_set);
   }
 }
 
-/*
-double getYaw (*x, *y, *z){
-  mpuc.getMotion(&ax, &ay, &az, &gx, &gy, &gz);
-  val = map(ay, -17000, 17000, 0, 179);
-}\*/
+float getHeading(char c)
+{
+  const float sampling_qty = 10.0;
+  Vector norm;
+  float heading;
+  float y=0, x=0;
+  int i=0;
+  unsigned long last_time = micros(),currentMillis = micros();
 
+  //Check which compass we would to get data on
+  switch (c){
+    case 'c':
+        digitalWrite(compassPin, LOW);
+        break;
+    case 'y':
+        digitalWrite(compassPin, HIGH);
+        break;
+    default:
+        digitalWrite(compassPin, LOW);
+        break;
+  }
+   
+  while ( (currentMillis=micros())-last_time < 100)
+  {
+    norm = compass.readNormalize();
+    y += norm.YAxis;
+    x += norm.XAxis;
+    i++;
+  } //end of sampling
+  
+  if(currentMillis-last_time>=100){
+    last_time=micros();
+    y = y/i;  //averaging
+    x = x/i;
+  } 
+  
+  // Calculate heading
+  heading = atan2(y, x);
+  heading += declinationAngle;   
+
+  // Correct for heading < 0deg and heading > 360deg
+  if (heading < -PI){
+    heading += 2 * PI;
+  }
+
+  if (heading > PI){
+    heading -= 2 * PI;
+  }
+
+  // Convert to degrees
+  heading = normalDeg( heading * 180/PI); 
+
+  // Output
+  Serial.print(" Heading = ");
+  Serial.println(heading);
+  delay(10);
+  return heading;
+}
+
+float normalDeg(float deg)
+{
+  //normalized degree value into -179.99 until 180
+  while (deg <= -180)
+  {
+    deg += 360;
+  }
+  
+  while (deg > 180)
+  {
+    deg -= 360;
+  }
+  return deg;
+}
+
+bool isTolerant(float ex, float real, float tol)
+{
+  // check whether the value is under accuracy of measurement tool
+  bool ret = false;
+  if ( ((real - ex) < tol) && ((ex-real) < tol) )
+  {
+    ret = true;
+  }
+  return ret;
+}
+
+/*
+float pid_calc(char var)
+{
+  switch (var){
+    case 'c' :
+      float max = 15;
+      float min = -15;
+      float Kp= 1;
+      float Ki= 1;
+      float Kd= 0.2;
+      cam_sum += Ki * err;
+      if(cam_sum > max) outputSum= outMax;
+      else if(outputSum < outMin) outputSum= outMin;
+      break;
+    case 'y' :
+      
+      break;
+  }
+}
+*/
