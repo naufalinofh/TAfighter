@@ -47,15 +47,16 @@ float cam_prev = 0;
 float cam_act=0, cam_act_init=0;  //heading measurement of camera
 float cam_sum=0, cam_last_pid=0; // for PID calculation of camera movement
 
-float tilt_set = 90;  //for camera tilt set condition
-float tilt_prev = 90;
+float tilt_set = 0;  //for camera tilt set condition
+float tilt_prev = 0;
 float yaw_set = 0;   //for turret yaw set condition
 float yaw_prev = 0;
 float yaw_act=0, yaw_act_init=0;  //heading measurement of yaw
-float gun_set = 90;   //for gun pitch set condition
-float gun_prev = 90;
+float gun_set = 0;   //for gun pitch set condition
+float gun_prev = 0;
 bool step_dir = HIGH; //CW is HIGH
 bool compassSync = false; //check whether the compass is connect
+bool useCompass = false;
 int step_count=0;// number of steps
 //unsigned long currentMillis=0, last_time=0;
 
@@ -74,28 +75,32 @@ void setup() {
   
   Serial.begin(9600); // serial comm to raspi
   Serial.print("Setup start");
-  //COMPASS SETUP 
-  int i = 0;
-  compassSync = compass.begin();
-  while ( (compassSync ==false) || i <5 )
+  if (useCompass)
   {
-    Serial.println("Could not find a valid QMC5883 sensor, check wiring!");
-    compassSync = compass.begin();
-    i++;
-    delay(500);
+    //COMPASS SETUP 
+    int i = 0;
+    compassSync = true;
+    while ( (compassSync ==false) || i <5 )
+    {
+      Serial.println("Could not find a valid QMC5883 sensor, check wiring!");
+      //compassSync = //compass.begin();
+      i++;
+      delay(500);
+    }
+    
+    Serial.println("Calibrating compass, move the compass");
+    for (int i =0; i<2; i++)
+    {
+      Serial.print(i);
+      Serial.print(" .. ");
+      cam_act = getHeading('c');
+    }
+    Serial.println("Calibrating initial compass heading, be steady");
+    delay(200);
+    cam_act_init = getHeading('c');
+    yaw_act_init = getHeading('y');  
   }
   
-  Serial.println("Calibrating compass, move the compass");
-  for (int i =0; i<2; i++)
-  {
-    Serial.print(i);
-    Serial.print(" .. ");
-    cam_act = getHeading('c');
-  }
-  Serial.println("Calibrating initial compass heading, be steady");
-  delay(200);
-  cam_act_init = getHeading('c');
-  yaw_act_init = getHeading('y');
   delay(200);
   //Calibrating all actuator
   move_gun(0);
@@ -170,37 +175,41 @@ void get_setpoint(){   //get setpoint from Server, through serial comms
 }
 
 void move_cam(float degree){
-  //float cam_setd = degree+ 90;  //map to servo degree between 0-180
-  //servo_cam.write(cam_setd);
   float err;
   const float tolerance = 3.0;
   const float Ki_cam= 0, Kp_cam=1, Kd_cam=0;
 
-  cam_act = normalDeg(getHeading('c')-cam_act_init);
-  err = degree - cam_act; // find error between setpoint and actual measurement
-  while(!isTolerant(0,err,tolerance)) //if the error is not under tolerance of system
+  if (useCompass)
   {
-    const float cam_max = 180;
-    //PID calculation
-    cam_sum +=err;  //cumulative error for integrative controller 
-    if(cam_sum > cam_max) cam_sum= cam_max;
-      else if(cam_sum < cam_max*-1) cam_sum= cam_max*-1;
-
-    float cam_pid_out = Kp_cam * err + Ki_cam * (cam_sum) + Kd_cam * (err - cam_last_pid);
-    
-    if(cam_pid_out > cam_max) cam_pid_out= cam_max;
-      else if(cam_pid_out < cam_max*-1) cam_pid_out= cam_max*-1;
-
-    cam_last_pid=err; // renew the last value
-    //end of PID calculation
-
-    //servo control eq. Input degree, Output PWM 
-    float cam_setd = map(cam_pid_out,-tolerance*2.5,tolerance*2.5,-15,15);
-    servo_cam.write(cam_setd);//move the servo
-    Serial.print("PID output ="); //DEBUG 
-    Serial.println(cam_setd);
-    cam_act = normalDeg(getHeading('c')-cam_act_init); //measure again
-    err = degree - cam_act; 
+    cam_act = normalDeg(getHeading('c')-cam_act_init);
+    err = degree - cam_act; // find error between setpoint and actual measurement
+    while(!isTolerant(0,err,tolerance)) //if the error is not under tolerance of system
+    {
+      const float cam_max = 180;
+      //PID calculation
+      cam_sum +=err;  //cumulative error for integrative controller 
+      if(cam_sum > cam_max) cam_sum= cam_max;
+        else if(cam_sum < cam_max*-1) cam_sum= cam_max*-1;
+  
+      float cam_pid_out = Kp_cam * err + Ki_cam * (cam_sum) + Kd_cam * (err - cam_last_pid);
+      
+      if(cam_pid_out > cam_max) {cam_pid_out= cam_max;}
+        else if(cam_pid_out < cam_max*-1) cam_pid_out= cam_max*-1;
+  
+      cam_last_pid=err; // renew the last value
+      //end of PID calculation
+  
+      //servo control eq. Input degree, Output PWM 
+      float cam_setd = map(cam_pid_out,-tolerance*2.5,tolerance*2.5,-15,15);
+      servo_cam.write(cam_setd);//move the servo
+      Serial.print("PID output ="); //DEBUG 
+      Serial.println(cam_setd);
+      cam_act = normalDeg(getHeading('c')-cam_act_init); //measure again
+      err = degree - cam_act; 
+    }
+  }else {//not use compass
+    float cam_setd = degree+ 90;  //map to servo degree between 0-180
+    servo_cam.write(cam_setd);
   }
   cam_prev = degree;
 }
@@ -290,50 +299,81 @@ void stepper_next(){
 
 void move_stepper(float degreeSet){
   Serial.println("move stepper");
-  yaw_act = normalDeg(getHeading('y')-yaw_act_init);
-  float deg = normalDeg(degreeSet-yaw_act);
-  float err =deg;
+  float err;
   float dump;
   int step_req;
-
-  //Serial.print("degree =");
-  //Serial.print(deg);
-  const float tolerance = 3.0;
-  while (!isTolerant(0,err,tolerance)) //if the error is not under tolerance of system
-  {   
+  
+  if (useCompass)
+  {
+    yaw_act = normalDeg(getHeading('y')-yaw_act_init);
+    float deg = normalDeg(degreeSet-yaw_act);
+    err = deg;
+   
+    //Serial.print("degree =");
+    //Serial.print(deg);
+    const float tolerance = 3.0;
+    while (!isTolerant(0,err,tolerance)) //if the error is not under tolerance of system
+    {   
+      //CW is step_dir LOW
+      if (err < 0)
+      {
+        step_dir=HIGH;
+      }else
+      {
+        step_dir=LOW;
+        err = -err;
+      }
+  
+      dump = deg/step_RES;
+      step_req = (int) dump;
+  
+      //while (steps_left>0){
+      for(int x = 0; x <= step_req; x++) {  //give pulse until degree achieved
+        //currentMillis = micros();
+        delay(1);
+        //frequensy of pulse to move stepper. Config based on datasheet
+        //if(currentMillis-last_time>=1000){
+        stepper(); 
+          //last_time=micros();
+          //steps_left--;
+         //} 
+      }
+      yaw_act = normalDeg(getHeading('y')-yaw_act_init);
+      err = normalDeg(degreeSet-yaw_act);
+       
+       
+      //Serial.print(step_req);
+    } // end of while. Is under tolerance
+  
+    //yaw_set +=degree;
+    yaw_prev = yaw_act;  
+  } else    //not use compass
+  {
+    err = degreeSet - yaw_prev;
+    
     //CW is step_dir LOW
     if (err < 0)
     {
       step_dir=HIGH;
     }else
     {
-      step_dir=LOW;
+        step_dir=LOW;
       err = -err;
     }
-
-    dump = deg/step_RES;
+    dump = err/step_RES;
     step_req = (int) dump;
-
-    //while (steps_left>0){
+  
     for(int x = 0; x <= step_req; x++) {  //give pulse until degree achieved
       //currentMillis = micros();
       delay(1);
       //frequensy of pulse to move stepper. Config based on datasheet
       //if(currentMillis-last_time>=1000){
-      stepper(); 
-        //last_time=micros();
-        //steps_left--;
-       //} 
+      stepper();  
     }
-    yaw_act = normalDeg(getHeading('y')-yaw_act_init);
-    err = normalDeg(degreeSet-yaw_act);
-     
-     
-    //Serial.print(step_req);
-  } // end of 
-
-  //yaw_set +=degree;
-  yaw_prev = yaw_act;
+    yaw_act = degreeSet;
+    yaw_prev=yaw_act;
+  }
+  
 }
 
 void move_gun(float degree){
