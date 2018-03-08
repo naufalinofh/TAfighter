@@ -271,22 +271,26 @@ void move_stepper(float degreeSet){
   yaw_act = getHeading('y');
   float deg = normalDeg(degreeSet-yaw_act);
   float err =deg;
-  //CW is step_dir LOW
-  if (deg < 0)
-  {
-    step_dir=HIGH;
-  }else
-  {
-    //digitalWrite(dirPin,LOW);
-    step_dir=LOW;
-    deg = -deg;
-  }
+  float dump;
+  int step_req;
+
   //Serial.print("degree =");
   //Serial.print(deg);
-  if (deg!=0)
-  {
-    float dump = deg/step_RES;
-    int step_req = (int) dump;
+  const float tolerance = 3.0;
+  while (!isTolerant(0,err,tolerance)) //if the error is not under tolerance of system
+  {   
+    //CW is step_dir LOW
+    if (err < 0)
+    {
+      step_dir=HIGH;
+    }else
+    {
+      step_dir=LOW;
+      err = -err;
+    }
+
+    dump = deg/step_RES;
+    step_req = (int) dump;
 
     //while (steps_left>0){
     for(int x = 0; x <= step_req; x++) {  //give pulse until degree achieved
@@ -299,19 +303,17 @@ void move_stepper(float degreeSet){
         //steps_left--;
        //} 
     }
+    yaw_act = getHeading('y');
+    err = normalDeg(degreeSet-yaw_act);
      
-     const float tolerance = 3.0;
+     
     //Serial.print(step_req);
-   
-  }
-  // Control using feedback
+  } // end of 
   
   cam_prev = degree;
 
   //yaw_set +=degree;
-  yaw_prev += step_req * step_RES;
-  yaw_act = getHeading('y');
-  delay(10);
+  yaw_prev = yaw_act;
 }
 
 void move_gun(float degree){
