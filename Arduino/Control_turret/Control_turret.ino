@@ -177,7 +177,7 @@ void get_setpoint(){   //get setpoint from Server, through serial comms
 void move_cam(float degree){
   float err;
   const float tolerance = 3.0;
-  const float Ki_cam= 0, Kp_cam=1, Kd_cam=0;
+  const float Ki_cam= 0.002, Kp_cam=1.2, Kd_cam=16;
 
   if (useCompass)
   {
@@ -208,7 +208,7 @@ void move_cam(float degree){
       err = degree - cam_act; 
     }
   }else {//not use compass
-    float cam_setd = degree+ 90;  //map to servo degree between 0-180
+    float cam_setd = -degree+ 90;  //map to servo degree between 0-180//reverse, EDIT if not reversed
     servo_cam.write(cam_setd);
   }
   cam_prev = degree;
@@ -296,13 +296,13 @@ void stepper_next(){
   if(step_count<0){step_count=7; }
 }
 
-
 void move_stepper(float degreeSet){
   Serial.println("move stepper");
   float err;
   float dump;
   int step_req;
-  
+  Serial.print("  yaw set = ");
+  Serial.print(yaw_set);
   if (useCompass)
   {
     yaw_act = normalDeg(getHeading('y')-yaw_act_init);
@@ -318,10 +318,10 @@ void move_stepper(float degreeSet){
       if (err < 0)
       {
         step_dir=HIGH;
+        err = -err;
       }else
       {
         step_dir=LOW;
-        err = -err;
       }
   
       dump = deg/step_RES;
@@ -350,15 +350,16 @@ void move_stepper(float degreeSet){
   } else    //not use compass
   {
     err = degreeSet - yaw_prev;
-    
+      Serial.print("  err = ");
+  Serial.print(err);    
     //CW is step_dir LOW
     if (err < 0)
     {
       step_dir=HIGH;
+      err = -err;
     }else
     {
-        step_dir=LOW;
-      err = -err;
+      step_dir=LOW;
     }
     dump = err/step_RES;
     step_req = (int) dump;
@@ -377,7 +378,7 @@ void move_stepper(float degreeSet){
 }
 
 void move_gun(float degree){
-  float gun_setd = degree + 90;  //map to servo degree between 0-180
+  float gun_setd = -degree;  //map to servo degree between 0-180. Reverse, EDIT this line if the servo is not reversed
   // set limit for pitch
   if (gun_setd < 70) //degree < -20
   {
@@ -387,7 +388,7 @@ void move_gun(float degree){
     gun_setd = 150;
   }
   
-  servo_gun.write(gun_setd);
+  servo_gun.write(gun_setd+90);
   gun_prev = degree;
 }
 
@@ -412,7 +413,6 @@ void move_all(){
 
 float getHeading(char c)
 {
-  const float sampling_qty = 10.0;
   Vector norm;
   float heading;
   float y=0, x=0;
@@ -462,9 +462,6 @@ float getHeading(char c)
   // Convert to degrees
   heading = normalDeg( heading * 180/PI); 
 
-  // Output
-  Serial.print(" Heading = ");
-  Serial.println(heading);
   delay(10);
   return heading;
 }
