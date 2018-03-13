@@ -1,0 +1,73 @@
+wpa_passphrase "Titanic" "samakayakhotspotitb" > /etc/wpa_supplicant.conf
+wpa_passphrase "ABC" "1234567890" > /etc/wpa_supplicant.conf
+
+wpa_passphrase "RanggaBro" "rangga01" > /etc/wpa_supplicant.conf
+
+sudo nano /etc/network/interfaces
+
+auto lo
+auto wlan0
+iface lo inet loopback
+dns-nameservers 8.8.8.8 8.8.4.4
+iface wlan0 inet static
+address 192.168.43.132
+netmask 255.255.255.0
+gateway 192.168.43.1
+pre-up sudo /sbin/wpa_supplicant -iwlan0 -c/etc/wpa_supplicant.conf -Dnl80211 -B
+pre-up sleep 5
+post-down sudo killall -q wpa_supplicant
+
+-----------------------
+auto lo
+iface lo inet loopback
+
+iface eth0 inet dhcp
+
+auto wlan0
+allow-hotplug wlan0
+iface wlan0 inet static
+    address 192.168.0.132
+    netmask 255.255.255.0
+    network 192.168.0.1
+    broadcast 192.168.1.255
+    gateway 192.168.0.1
+    wpa-ssid "Titanic"
+    wpa-psk "samakayakhotspotitb"
+----------------------
+Handy Hints
+
+To monitor the temperature, CPU speed and other interesting details of your Orange Pi Zero type:
+	sudo armbianmonitor -m
+(To quit and return to the command line, hit the key combination Control+C.)
+
+To cleanly exit your PuTTY session while leaving your Orange Pi Zero running, type:
+	exit
+
+To cleanly shut down your Orange Pi Zero before disconnecting power, type:
+	sudo halt
+
+To reboot your Orange Pi Zero, type:
+	sudo reboot
+-----------------------
+bash <(curl -sL https://raw.githubusercontent.com/node-red/raspbian-deb-package/master/resources/update-nodejs-and-nodered)
+
+curl -sL https://deb.nodesource.com/setup_7.x | sudo -E bash -
+sudo apt-get install -y nodejs
+-----------------------------------------------------
+failed to fetch some archive, maybe run apt-get update or try with --fix-missing?
+
+common filter
+echo "nameserver 8.8.8.8" | sudo tee /etc/resolv.conf > /dev/null
+-------------------------------------------------------
+E: The value 'stretch-backports' is invalid for APT::Default-Release as such a release is not available in the sources
+
+sudo apt-get install libnspr4=4.10.10-0ubuntu0.16.04
+
+-------------------------------------------
+E: Could not get lock /var/lib/dpkg/lock – open (11: Resource temporarily unavailable)
+
+E: Unable to lock the administration directory (/var/lib/dpkg/), is another process using it?
+
+sudo rm /var/lib/dpkg/lock
+
+sudo rm /var/cache/apt/archives/lock
