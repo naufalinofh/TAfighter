@@ -35,6 +35,7 @@ Servo servo_gun; // // servo object for gun pitch
 const float step_RES = 0.044 ; // step resolution is 360/64 step (from motor) / 64 (gearbox)/2 (gear turret). If you want to change the resolution, change the driver configuration. Driver configuration 010 -> quarter step
 const float yaw_RES = 1.8/4 ; //nema 17 resolution is 1.8 degree, with gear ratio between motor and turret is 1:4
 
+String readStr;
 float cam_set = 0;  //for camera pan set condition
 float cam_prev = 0;
 float cam_act=0, cam_act_init=0;  //heading measurement of camera
@@ -77,11 +78,77 @@ void setup() {
 void loop() {
   if (Serial.available()>0)
   {
-    get_setpoint();
-    move_all();   // move all actuator
+    if(get_setPoint())
+    {
+      move_all();   // move all actuator  
+    }
+    
   }
 }
 
+bool get_setPoint(){
+    int idx[4]; 
+    char c = Serial.read();  //gets one byte from serial buffer
+    String s[4];  //array of substring
+    String temp;
+    if (c == '\n') //while not end of serial data
+    { 
+      //do stuff      
+      Serial.println();
+      Serial.print("captured String is : "); 
+      Serial.println(readStr); //prints string to serial port out
+   
+      idx[0] = readStr.indexOf(',');  //finds location of first ,
+      s[0] = readStr.substring(0, idx[0]);   //captures first data String
+      idx[1] = readStr.indexOf(',', idx[0]+1 );   //finds location of second ,
+      s[1] = readStr.substring(idx[0]+1, idx[1]);   //captures second data String
+      idx[2] = readStr.indexOf(',', idx[1]+1 );
+      s[2] = readStr.substring(idx[1]+1, idx[2]);
+      s[3] = readStr.substring(idx[2]+1); //captures remain part of data after last ,
+
+      for (int i=0; i<4;i++)
+      {
+        Serial.print(" first char = ");
+            Serial.print(s[i]);
+        switch(s[i][0])
+        {
+          case 'c' :
+            temp = s[i].substring(1);
+             cam_set = (float) temp.toFloat();
+            Serial.print(" cam set = ");
+            Serial.println(cam_set);
+            break;
+          case 'g' :
+            temp = s[i].substring(1);
+             gun_set = (float) temp.toFloat();
+            Serial.print(" gun set = ");
+            Serial.println(gun_set);
+            break;
+          case 't' :
+            temp = s[i].substring(1);
+             tilt_set = (float) temp.toFloat();
+             Serial.print(" tilt set = ");
+            Serial.println(tilt_set);
+            break;
+          case 'y' :
+            temp = s[i].substring(1);
+             yaw_set = (float) temp.toFloat();
+             Serial.print(" yaw set = ");
+            Serial.println(yaw_set);
+            break;
+          default: break;
+        }
+      }
+      readStr=""; //clears variable for new input
+      Serial.flush();
+      return true;
+    }
+    else
+    {       
+      readStr += c; //makes the string readString
+      return false;
+    }
+}
 
 void get_setpoint(){   //get setpoint from Server, through serial comms
   String serialResponse;
@@ -97,7 +164,7 @@ void get_setpoint(){   //get setpoint from Server, through serial comms
   //char *str;
   //str = strtok_r(p, ",", &p);
   String str;
-  str = buf.substring(0,bufS.indexOf(","));
+  str = bufS.substring(0,bufS.indexOf(","));
   Serial.println(str); 
   while (str  != NULL) // delimiter is the semicolon
   {
@@ -236,14 +303,13 @@ void stepper_next(){
 }
 
 void move_stepper(float degreeSet){
-  Serial.println("move stepper");
+  //Serial.println("move stepper");
   float err;
   float dump;
   int step_req;
  
   err = degreeSet - cam_prev;
-      Serial.print("  err = ");
-  Serial.print(err);    
+      
     //CW is step_dir LOW
     if (err < 0)
     {
@@ -264,8 +330,6 @@ void move_stepper(float degreeSet){
       stepper();  
     }
     cam_prev=degreeSet;
-  
-  
 }
 
 
@@ -283,9 +347,10 @@ void move_turret(float degree){
     digitalWrite(dirPin,HIGH); // Enables the motor to move turret in counterclockwise direction
     step_count = -err / yaw_RES;
   }
-  
+  /*DEBUG PURPOSE
   Serial.print("  step_count = ");
   Serial.print(step_count);
+  */
   
   for (int i=0; i < step_count; i++)
   {
@@ -302,8 +367,10 @@ void move_turret(float degree){
   {
     yaw_act = normalDeg(yaw_act - step_count * yaw_RES);
   }
+  /*DEBUG PURPOSE
   Serial.print("yaw_act = ");
   Serial.print(yaw_act);
+  */
 }
 void move_gun(float degree){
   float gun_setd = -degree;  //map to servo degree between 0-180. Reverse, EDIT this line if the servo is not reversed
@@ -321,7 +388,7 @@ void move_gun(float degree){
 }
 
 void move_all(){
-  Serial.print("move all");
+  //DEBUG PURPOSE Serial.print("move all");
   if(cam_set != cam_prev) //if the value change
   {
     move_cam(normalDeg(cam_set-yaw_act));
@@ -333,7 +400,8 @@ void move_all(){
   if(yaw_set != yaw_act) //if the value change
   {
     move_turret(yaw_set);
-  } else if(gun_set != gun_prev) //if the value change
+  }
+  if(gun_set != gun_prev) //if the value change
   {
     move_gun(gun_set);
   }
