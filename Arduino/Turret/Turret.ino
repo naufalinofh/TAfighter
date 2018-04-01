@@ -67,7 +67,7 @@ void setup() {
   pinMode(dirPin,OUTPUT);
   
   Serial.begin(9600); // serial comm to raspi
-  Serial.print("Setup start");
+  //Serial.print("Setup start");
   
   //Calibrating all actuator
   move_gun(0);
@@ -82,11 +82,10 @@ void loop() {
     {
       move_all();   // move all actuator  
     }
-    
   }
 }
 
-bool get_setPoint(){
+bool get_setPoint(){  //get setpoint from serial data from server
     int idx[4]; 
     char c = Serial.read();  //gets one byte from serial buffer
     String s[4];  //array of substring
@@ -148,66 +147,6 @@ bool get_setPoint(){
       readStr += c; //makes the string readString
       return false;
     }
-}
-
-void get_setpoint(){   //get setpoint from Server, through serial comms
-  String serialResponse;
-  serialResponse = Serial.readStringUntil('\n');
-  Serial.flush();
-  Serial.print(serialResponse);
-  String bufS = serialResponse;
-  char buf[sizeof(serialResponse)];
-  serialResponse.toCharArray(buf, sizeof(buf));
-  char  *p = buf;
-  char *camc, *gunc, *tiltc, *yawc;  //string variable for cam and gun
-  
-  //char *str;
-  //str = strtok_r(p, ",", &p);
-  String str;
-  str = bufS.substring(0,bufS.indexOf(","));
-  Serial.println(str); 
-  while (str  != NULL) // delimiter is the semicolon
-  {
-    //Serial.print(str);
-    //Serial.println(str[0]);
-    if(str[0]=='c')               //get camera pan setpoint
-    {
-      camc = &str[1];
-      String s=camc;
-      cam_set = (float) s.toFloat();
-      Serial.print("cam_set = ");
-      Serial.println(cam_set);
-      str = strtok_r(p, ",", &p);
-      Serial.println(str);
-    } else if(str[0]=='t')        // get camera tilt setpoint
-    {
-      tiltc = &str[1];
-        String s=tiltc;
-      tilt_set = (float) s.toFloat();
-      Serial.print("tilt_set = ");
-      Serial.println(tilt_set);
-      str = strtok_r(p, ",", &p);
-      Serial.println(str);
-    } else if(str[0]=='y')      //get turret yaw setpoint
-    {
-      yawc = &str[1];
-      String s=yawc;
-      yaw_set = (float) s.toFloat();
-      Serial.print("yaw_set = ");
-      Serial.println(yaw_set);
-      str = strtok_r(p, ",", &p);
-      Serial.println(str);
-    }else if(str[0]=='g')         // get gun setpoint
-    {
-      gunc = &str[1];
-      String s=gunc;
-      gun_set = (float) s.toFloat();
-      str = strtok_r(p, ",", &p);
-      Serial.print("gun_set = ");
-      Serial.println(gun_set);
-      Serial.println(str);
-    }
-  }
 }
 
 void move_cam(float degree){
