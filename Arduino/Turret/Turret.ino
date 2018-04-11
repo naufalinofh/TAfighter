@@ -241,13 +241,13 @@ void stepper_next(){
   if(cam_stepState<0){cam_stepState=7; }
 }
 
-void move_stepper(float degreeSet){
+void move_cams(float degreeSet){
   //Serial.println("move stepper");
   float err;
   float dump;
   int step_req;
  
-  err = degreeSet - cam_prev;
+  err = normalDeg(degreeSet - cam_act);
       
     //CW is step_dir LOW
     if (err < 0)
@@ -268,7 +268,15 @@ void move_stepper(float degreeSet){
       //if(currentMillis-last_time>=1000){
       stepper();  
     }
-    cam_prev=degreeSet;
+
+    if (err>0)  //calculate camera direction after movement
+    {
+      cam_act = normalDeg(cam_act + step_req * step_RES);    
+    }else
+    {
+      cam_act = normalDeg(cam_act - step_req * step_RES);    
+    }
+   
 }
 
 
@@ -301,11 +309,17 @@ void move_turret(float degree){
   
   if (err>0)
   {
-    yaw_act = normalDeg(yaw_act + step_count * yaw_RES);  
+    yaw_act = normalDeg(yaw_act + step_count * yaw_RES);
+    cam_act = normalDeg(cam_act + step_count * yaw_RES);    //to compensate camera direction due to turret movement
   }else
   {
     yaw_act = normalDeg(yaw_act - step_count * yaw_RES);
+    cam_act = normalDeg(cam_act - step_count * yaw_RES);    //to compensate camera direction due to turret movement
   }
+
+  //move camera to initial setpoint before turret moved
+  move_cam(cam_set);
+  
   /*DEBUG PURPOSE
   Serial.print("yaw_act = ");
   Serial.print(yaw_act);
@@ -328,9 +342,9 @@ void move_gun(float degree){
 
 void move_all(){
   //DEBUG PURPOSE Serial.print("move all");
-  if(cam_set != cam_prev) //if the value change
+  if(cam_set != cam_act) //if the value change
   {
-    move_cam(normalDeg(cam_set-yaw_act));
+    move_cams(cam_set);
   }
   if(tilt_set != tilt_prev) //if the value change
   {
