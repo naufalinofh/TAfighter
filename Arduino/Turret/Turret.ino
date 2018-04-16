@@ -160,7 +160,7 @@ void move_cam(float degree){
 }
 
 void move_tilt(float degree){
-  float tilt_setd = degree+ 90;  //map to servo degree between 0-180
+  float tilt_setd = degree+ 90;  //map to servo degree between 0-180. //direction of servo is reversed because of current servo configuration.
   // set limit for pitch
   if (tilt_setd < 70) //degree < -20
   {
@@ -170,7 +170,7 @@ void move_tilt(float degree){
     tilt_setd = 150;
   }
   
-  servo_tilt.write(tilt_setd);
+  servo_tilt.write(tilt_setd); 
   tilt_prev = degree;
 }
 
