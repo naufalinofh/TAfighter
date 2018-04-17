@@ -12,10 +12,10 @@
 #define servoGUN 6 //servo for control gun
 #define stepPin 3 //pulse pin for controlliong turret stepper
 #define dirPin 4 //pulse pin for controlliong turret stepper
-#define stepPin1 8 //pulse pin for controlling stepper, stepPin1
-#define stepPin2 9 //pulse pin for controlling stepper, IN2
-#define stepPin3 10 //pulse pin for controlling stepper, IN3
-#define stepPin4 11 //pulse pin for controlling stepper, IN4
+#define stepPin1 8 //pulse pin for controlling stepper, stepPin1. Red
+#define stepPin2 9 //pulse pin for controlling stepper, IN2. Blue
+#define stepPin3 10 //pulse pin for controlling stepper, IN3. Green
+#define stepPin4 11 //pulse pin for controlling stepper, IN4. Black
 #define compassPin A3// pin to control which compass is active, low for compass_cam, high for compass_turret
 
 //Function Definition
