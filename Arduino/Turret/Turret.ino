@@ -32,7 +32,7 @@ Servo servo_gun; // // servo object for gun pitch
 
 
 //CONSTANT
-const float step_RES = 0.044 ; // step resolution is 360/64 step (from motor) / 64 (gearbox)/2 (gear turret). If you want to change the resolution, change the driver configuration. Driver configuration 010 -> quarter step
+const float step_RES = 0.088 ; // step resolution is 360/64 step (from motor) / 64 (gearbox). If you want to change the resolution, change the driver configuration. Driver configuration 010 -> quarter step
 const float yaw_RES = 1.8/4 ; //nema 17 resolution is 1.8 degree, with gear ratio between motor and turret is 1:4
 
 String readStr;
@@ -263,7 +263,7 @@ void move_cams(float degreeSet){
   
     for(int x = 0; x <= step_req; x++) {  //give pulse until degree achieved
       //currentMillis = micros();
-      delay(1);
+      delay(2);
       //frequensy of pulse to move stepper. Config based on datasheet
       //if(currentMillis-last_time>=1000){
       stepper();  
