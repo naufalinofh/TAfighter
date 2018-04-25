@@ -93,9 +93,9 @@ bool get_setPoint(){  //get setpoint from serial data from server
     if (c == '\n') //while not end of serial data
     { 
       //do stuff      
-      Serial.println();
-      Serial.print("captured String is : "); 
-      Serial.println(readStr); //prints string to serial port out
+      ///DEBUGSerial.println();
+      ///DEBUGSerial.print("captured String is : "); 
+      ///DEBUGSerial.println(readStr); //prints string to serial port out
    
       idx[0] = readStr.indexOf(',');  //finds location of first ,
       s[0] = readStr.substring(0, idx[0]);   //captures first data String
@@ -107,33 +107,33 @@ bool get_setPoint(){  //get setpoint from serial data from server
 
       for (int i=0; i<4;i++)
       {
-        Serial.print(" first char = ");
-            Serial.print(s[i]);
+        ///DEBUGSerial.print(" first char = ");
+        ///DEBUG    Serial.print(s[i]);
         switch(s[i][0])
         {
           case 'c' :
             temp = s[i].substring(1);
              cam_set = (float) temp.toFloat();
-            Serial.print(" cam set = ");
-            Serial.println(cam_set);
+            ///DEBUGSerial.print(" cam set = ");
+            ///DEBUGSerial.println(cam_set);
             break;
           case 'g' :
             temp = s[i].substring(1);
              gun_set = (float) temp.toFloat();
-            Serial.print(" gun set = ");
-            Serial.println(gun_set);
+            ///DEBUGSerial.print(" gun set = ");
+            ///DEBUGSerial.println(gun_set);
             break;
           case 't' :
             temp = s[i].substring(1);
              tilt_set = (float) temp.toFloat();
-             Serial.print(" tilt set = ");
-            Serial.println(tilt_set);
+             ///DEBUGSerial.print(" tilt set = ");
+            ///DEBUGSerial.println(tilt_set);
             break;
           case 'y' :
             temp = s[i].substring(1);
-             yaw_set = (float) temp.toFloat();
-             Serial.print(" yaw set = ");
-            Serial.println(yaw_set);
+             yaw_act = (float) temp.toFloat();  //this data came from nodeMCU that control stepper
+             ///DEBUGSerial.print(" yaw act = ");
+            ///DEBUGSerial.println(yaw_act);
             break;
           default: break;
         }
@@ -253,14 +253,12 @@ void move_cams(float degreeSet){
     if (err < 0)
     {
       step_dir=HIGH;
-      dump = -err/step_RES;
+      step_req = round(-err/step_RES);
     }else
     {
       step_dir=LOW;
-      dump = err/step_RES;
+      step_req = round(err/step_RES);
     }
-    
-    step_req = (int) dump;
   
     for(int x = 0; x <= step_req; x++) {  //give pulse until degree achieved
       //currentMillis = micros();
@@ -277,8 +275,8 @@ void move_cams(float degreeSet){
     {
       cam_act = normalDeg(cam_act - step_req * step_RES);    
     }
-   Serial.print("cam_act = ");
-   Serial.print(cam_act);
+   ///DEBUGSerial.print("cam_act = ");
+   ///DEBUGSerial.print(cam_act);
 }
 
 
@@ -344,17 +342,18 @@ void move_gun(float degree){
 
 void move_all(){
   //DEBUG PURPOSE Serial.print("move all");
-  if(cam_set != cam_act) //if the value change
-  {
-    move_cams(cam_set);
-  }
   if(tilt_set != tilt_prev) //if the value change
   {
     move_tilt(tilt_set);
   }
+  /*
   if(yaw_set != yaw_act) //if the value change
   {
     move_turret(yaw_set);
+  }*/
+  if(cam_set != cam_act) //if the value change
+  {
+    move_cams(cam_set);
   }
   if(gun_set != gun_prev) //if the value change
   {
