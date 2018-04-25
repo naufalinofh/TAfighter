@@ -173,9 +173,9 @@ void move_turret(float degree){
   for (int i=0; i < step_count; i++)
   {
     digitalWrite(stepPin,HIGH); 
-    delayMicroseconds(500); 
+    delayMicroseconds(1000); 
     digitalWrite(stepPin,LOW); 
-    delayMicroseconds(500);
+    delayMicroseconds(1000);
   }
   
   if (err>0)
