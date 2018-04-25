@@ -146,6 +146,9 @@ void loop() {
     ++value;
     snprintf(msg, 75, "hello world #%ld", value);
     Serial.print("Publish message: ");
+    /*
+    snprintf(msg,8,"y%d\n",yaw_act);
+    */
     Serial.println(msg);
     client.publish("outTopic", msg);
   }
