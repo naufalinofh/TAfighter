@@ -253,12 +253,13 @@ void move_cams(float degreeSet){
     if (err < 0)
     {
       step_dir=HIGH;
-      err = -err;
+      dump = -err/step_RES;
     }else
     {
       step_dir=LOW;
+      dump = err/step_RES;
     }
-    dump = err/step_RES;
+    
     step_req = (int) dump;
   
     for(int x = 0; x <= step_req; x++) {  //give pulse until degree achieved
@@ -276,7 +277,8 @@ void move_cams(float degreeSet){
     {
       cam_act = normalDeg(cam_act - step_req * step_RES);    
     }
-   
+   Serial.print("cam_act = ");
+   Serial.print(cam_act);
 }
 
 
