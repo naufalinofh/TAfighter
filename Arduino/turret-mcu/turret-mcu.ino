@@ -147,7 +147,7 @@ void loop() {
     snprintf(msg, 75, "hello world #%ld", value);
     Serial.print("Publish message: ");
     /*
-    snprintf(msg,8,"y%d\n",yaw_act);
+    snprintf(msg,8,"y%d\n",yaw_act);    //the message transmitted to raspi is the alue of yaw act as a feedback
     */
     Serial.println(msg);
     client.publish("outTopic", msg);
