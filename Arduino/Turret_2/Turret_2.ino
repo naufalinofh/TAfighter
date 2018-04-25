@@ -105,9 +105,9 @@ void move_turret(float degree){
   for (int i=0; i < step_count; i++)
   {
     digitalWrite(stepPin,HIGH); 
-    delayMicroseconds(500); 
+    delayMicroseconds(1000); 
     digitalWrite(stepPin,LOW); 
-    delayMicroseconds(500);
+    delayMicroseconds(1000);
   }
   
   if (err>0)
@@ -117,10 +117,10 @@ void move_turret(float degree){
   {
     yaw_act = normalDeg(yaw_act - step_count * yaw_RES);
   }
-  /*
-  Serial.print("yaw_act = ");
-  Serial.print(yaw_act);
-  */
+  
+  ///DEBUGSerial.print("yaw_act = ");
+  ///DEBUGSerial.print(yaw_act);
+  
 }
 
 void move_all(){
