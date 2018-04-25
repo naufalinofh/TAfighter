@@ -94,11 +94,11 @@ void move_turret(float degree){
   if (err>0)
   {
     digitalWrite(dirPin,LOW); // Enables the motor to move with vector direction upward the axis. In this case, move gear ccw -> move turret in clockwise direction
-    step_count = err / yaw_RES;
+    step_count = round(err / yaw_RES);
   }else
   {
     digitalWrite(dirPin,HIGH); // Enables the motor to move turret in counterclockwise direction
-    step_count = -err / yaw_RES;
+    step_count = round(-err / yaw_RES);
   }
   
   
