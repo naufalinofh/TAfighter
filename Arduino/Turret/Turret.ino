@@ -115,26 +115,20 @@ bool get_setPoint(){  //get setpoint from serial data from server
           case 'c' :
             temp = s[i].substring(1);
              cam_set = (float) temp.toFloat();
-            ///DEBUG
-            Serial.print(" cam set = ");
-            ///DEBUG
-            Serial.println(cam_set);
+            ///DEBUGSerial.print(" cam set = ");
+            ///DEBUGSerial.println(cam_set);
             break;
           case 'g' :
             temp = s[i].substring(1);
              gun_set = (float) temp.toFloat();
-            ///DEBUG
-            Serial.print(" gun set = ");
-            ///DEBUG
-            Serial.println(gun_set);
+            ///DEBUGSerial.print(" gun set = ");
+            ///DEBUGSerial.println(gun_set);
             break;
           case 't' :
             temp = s[i].substring(1);
              tilt_set = (float) temp.toFloat();
-             ///DEBUG
-             Serial.print(" tilt set = ");
-            ///DEBUG
-            Serial.println(tilt_set);
+             ///DEBUGSerial.print(" tilt set = ");
+            ///DEBUGSerial.println(tilt_set);
             break;
           case 'y' :
             temp = s[i].substring(1);
@@ -179,6 +173,8 @@ void move_tilt(float degree){
   
   servo_tilt.write(tilt_setd); 
   updatePrev('t');
+  //DEBUG
+  Serial.print("\n tilt ");Serial.print(tilt_prev2);Serial.print(tilt_prev);Serial.print(tilt_set);
 }
 
 void stepper(){
@@ -286,6 +282,9 @@ void move_cams(float degreeSet){
     updatePrev('c');
    ///DEBUGSerial.print("cam_act = ");
    ///DEBUGSerial.print(cam_act);
+
+    ///DEBUGSerial.print("\n cam ");Serial.print(cam_prev2);Serial.print(cam_prev);Serial.print(cam_act);
+
 }
 
 
@@ -348,13 +347,15 @@ void move_gun(float degree){
   
   servo_gun.write(gun_setd);
   updatePrev('g');
+    //DEBUGSerial.print("\n gun ");Serial.print(gun_prev2);Serial.print(gun_prev);Serial.print(gun_set);
+
 }
 
 void move_all(){
   //DEBUG PURPOSE Serial.print("move all");
   if(tilt_set != tilt_prev) //if the value change
   {
-    tilt_set = filter('t');
+    ///DEBUGtilt_set = filter('t');
     move_tilt(tilt_set);
   }
   /*
@@ -364,12 +365,12 @@ void move_all(){
   }*/
   if(cam_set != cam_act) //if the value change
   {
-    cam_set = filter('c');
+    ///DEBUGcam_set = filter('c');
     move_cams(cam_set);
   }
   if(gun_set != gun_prev) //if the value change
   {
-    gun_set = filter('g');
+    ///DEBUGgun_set = filter('g');
     move_gun(gun_set);
   }
 }
@@ -402,7 +403,9 @@ bool isTolerant(float ex, float real, float tol)
 }
 
 float filter (char c)
-{// filter the serial data come to Arduino
+{
+  //RECONSIDER ABOUT THE ALGORITHM
+  // filter the serial data come to Arduino
   float prev, prev2, now;  // data that need to be filtered
   float grad1, grad2;
   
@@ -447,14 +450,19 @@ float filter (char c)
     if(grad1*grad2 < 0) // the gradient is negative, different sign between gradient
     {
       return prev; 
+    }else {
+      return now;
     }
+  }else {
+    return now;
   }
   
 }
 
 
 float updatePrev (char c)
-{// update the previous value after move the actuator
+{
+  // update the previous value after move the actuator
   
   switch (c){
     case 'c':
