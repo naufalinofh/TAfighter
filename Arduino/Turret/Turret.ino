@@ -37,18 +37,19 @@ const float yaw_RES = 1.8/4 ; //nema 17 resolution is 1.8 degree, with gear rati
 
 String readStr;
 float cam_set = 0;  //for camera pan set condition
-float cam_prev = 0;
+float cam_prev = 0 , cam_prev2=0;
 float cam_act=0, cam_act_init=0;  //heading measurement of camera
 float cam_sum=0, cam_last_pid=0; // for PID calculation of camera movement
 int cam_stepState;
 
 float tilt_set = 0;  //for camera tilt set condition
-float tilt_prev = 0;
+float tilt_prev = 0 , tilt_prev2=0;
 float yaw_set = 0;   //for turret yaw set condition
-float yaw_act=0;  //heading measurement of yaw
+float yaw_act=0,yaw_act_prev=0, yaw_act_prev2=0;  //heading measurement of yaw
+float yaw_prev = 0;
 
 float gun_set = 0;   //for gun pitch set condition
-float gun_prev = 0;
+float gun_prev = 0 , gun_prev2=0;
 
 bool step_dir = HIGH; //CW is HIGH
 
@@ -114,20 +115,26 @@ bool get_setPoint(){  //get setpoint from serial data from server
           case 'c' :
             temp = s[i].substring(1);
              cam_set = (float) temp.toFloat();
-            ///DEBUGSerial.print(" cam set = ");
-            ///DEBUGSerial.println(cam_set);
+            ///DEBUG
+            Serial.print(" cam set = ");
+            ///DEBUG
+            Serial.println(cam_set);
             break;
           case 'g' :
             temp = s[i].substring(1);
              gun_set = (float) temp.toFloat();
-            ///DEBUGSerial.print(" gun set = ");
-            ///DEBUGSerial.println(gun_set);
+            ///DEBUG
+            Serial.print(" gun set = ");
+            ///DEBUG
+            Serial.println(gun_set);
             break;
           case 't' :
             temp = s[i].substring(1);
              tilt_set = (float) temp.toFloat();
-             ///DEBUGSerial.print(" tilt set = ");
-            ///DEBUGSerial.println(tilt_set);
+             ///DEBUG
+             Serial.print(" tilt set = ");
+            ///DEBUG
+            Serial.println(tilt_set);
             break;
           case 'y' :
             temp = s[i].substring(1);
@@ -156,7 +163,7 @@ void move_cam(float degree){
 
   float cam_setd = -degree+ 90;  //map to servo degree between 0-180//reverse, EDIT if not reversed
  // servo_cam.write(cam_setd);
-  cam_prev = degree;
+  updatePrev('c');
 }
 
 void move_tilt(float degree){
@@ -171,7 +178,7 @@ void move_tilt(float degree){
   }
   
   servo_tilt.write(tilt_setd); 
-  tilt_prev = degree;
+  updatePrev('t');
 }
 
 void stepper(){
@@ -275,6 +282,8 @@ void move_cams(float degreeSet){
     {
       cam_act = normalDeg(cam_act - step_req * step_RES);    
     }
+    
+    updatePrev('c');
    ///DEBUGSerial.print("cam_act = ");
    ///DEBUGSerial.print(cam_act);
 }
@@ -326,8 +335,9 @@ void move_turret(float degree){
   */
 }
 void move_gun(float degree){
-  float gun_setd = -degree;  //map to servo degree between 0-180. Reverse, EDIT this line if the servo is not reversed
+  float gun_setd = degree;  //map to servo degree between 0-180. Reverse, EDIT this line if the servo is not reversed
   // set limit for pitch
+  gun_setd += 90;
   if (gun_setd < 70) //degree < -20
   {
     gun_setd = 70;
@@ -336,14 +346,15 @@ void move_gun(float degree){
     gun_setd = 150;
   }
   
-  servo_gun.write(gun_setd+90);
-  gun_prev = degree;
+  servo_gun.write(gun_setd);
+  updatePrev('g');
 }
 
 void move_all(){
   //DEBUG PURPOSE Serial.print("move all");
   if(tilt_set != tilt_prev) //if the value change
   {
+    tilt_set = filter('t');
     move_tilt(tilt_set);
   }
   /*
@@ -353,10 +364,12 @@ void move_all(){
   }*/
   if(cam_set != cam_act) //if the value change
   {
+    cam_set = filter('c');
     move_cams(cam_set);
   }
   if(gun_set != gun_prev) //if the value change
   {
+    gun_set = filter('g');
     move_gun(gun_set);
   }
 }
@@ -387,3 +400,81 @@ bool isTolerant(float ex, float real, float tol)
   }
   return ret;
 }
+
+float filter (char c)
+{// filter the serial data come to Arduino
+  float prev, prev2, now;  // data that need to be filtered
+  float grad1, grad2;
+  
+  switch (c){
+    case 'c':
+      now= cam_set;
+      prev = cam_prev;
+      prev2 = cam_prev2;
+      break;
+    case 't':
+      now= tilt_set;
+      prev = tilt_prev;
+      prev2 = tilt_prev2;
+      break;
+    case 'y':
+      now= yaw_act;
+      prev = yaw_act_prev;
+      prev2 = yaw_act_prev2;
+      break;
+    case 'g':
+      now= gun_set;
+      prev = gun_prev;
+      prev = gun_prev2;
+      break;
+    default:
+      break;
+  }
+
+  //check the noise because of parsing error that cause shifting
+  if ((now > 200) or (now<-200))  // data out of range. Degree are between 0-180 and -179-0
+  {
+    return prev;
+    
+  } 
+
+  //check the noise because of parsing error
+  grad1 = (now-prev);
+  grad2 = (prev-prev2);
+  if ((now >= (10*prev)) or (now <= (prev/10) ) ) // if the gradient is too high
+  {
+    //check whether the signal is a peak noise or a consistent increasing/decreasing signal
+    if(grad1*grad2 < 0) // the gradient is negative, different sign between gradient
+    {
+      return prev; 
+    }
+  }
+  
+}
+
+
+float updatePrev (char c)
+{// update the previous value after move the actuator
+  
+  switch (c){
+    case 'c':
+      cam_prev2 = cam_prev;
+      cam_prev = cam_act;
+      break;
+    case 't':
+      tilt_prev2 = tilt_prev;
+      tilt_prev = tilt_set;
+      break;
+    case 'y':
+      yaw_act_prev2 = yaw_act_prev;
+      yaw_act_prev = yaw_act;
+      break;
+    case 'g':
+      gun_prev2 = gun_prev;
+      gun_prev = gun_set;
+      break;
+    default:
+      break;
+  }  
+}
+
