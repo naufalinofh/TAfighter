@@ -263,7 +263,7 @@ void move_cams(float degreeSet){
       step_req = round(err/step_RES);
     }
   
-    for(int x = 0; x <= step_req; x++) {  //give pulse until degree achieved
+    for(int x = 1; x <= step_req; x++) {  //give pulse until degree achieved
       //currentMillis = micros();
       delay(2);
       //frequensy of pulse to move stepper. Config based on datasheet
@@ -280,8 +280,18 @@ void move_cams(float degreeSet){
     }
     
     updatePrev('c');
-   ///DEBUGSerial.print("cam_act = ");
-   ///DEBUGSerial.print(cam_act);
+   ///DEBUG
+   Serial.print("cam_act = ");
+   ///DEBUG
+   Serial.print(cam_act);
+      ///DEBUG
+   Serial.print(" \tcam_set = ");
+   ///DEBUG
+   Serial.print(cam_set);
+   ///DEBUG
+   Serial.print(" \tstep = ");
+   ///DEBUG
+   Serial.println(step_req);
 
     ///DEBUGSerial.print("\n cam ");Serial.print(cam_prev2);Serial.print(cam_prev);Serial.print(cam_act);
 
@@ -307,7 +317,7 @@ void move_turret(float degree){
   Serial.print(step_count);
   */
   
-  for (int i=0; i < step_count; i++)
+  for (int i=1; i < step_count; i++)
   {
     digitalWrite(stepPin,HIGH); 
     delayMicroseconds(500); 
@@ -355,7 +365,8 @@ void move_all(){
   //DEBUG PURPOSE Serial.print("move all");
   if(tilt_set != tilt_prev) //if the value change
   {
-    ///DEBUGtilt_set = filter('t');
+    ///DEBUG
+    tilt_set = filter('t');
     move_tilt(tilt_set);
   }
   /*
@@ -365,12 +376,14 @@ void move_all(){
   }*/
   if(cam_set != cam_act) //if the value change
   {
-    ///DEBUGcam_set = filter('c');
+    ///DEBUG
+    cam_set = filter('c');
     move_cams(cam_set);
   }
   if(gun_set != gun_prev) //if the value change
   {
-    ///DEBUGgun_set = filter('g');
+    ///DEBUG
+    gun_set = filter('g');
     move_gun(gun_set);
   }
 }
@@ -428,7 +441,7 @@ float filter (char c)
     case 'g':
       now= gun_set;
       prev = gun_prev;
-      prev = gun_prev2;
+      prev2 = gun_prev2;
       break;
     default:
       break;
@@ -444,15 +457,10 @@ float filter (char c)
   //check the noise because of parsing error
   grad1 = (now-prev);
   grad2 = (prev-prev2);
-  if ((now >= (10*prev)) or (now <= (prev/10) ) ) // if the gradient is too high
+  if ( ( (now >= (9*prev)) && (now > 10+prev) ) or ((now <= (prev/9) ) && (now < prev-10) ) ) // if the gradient is too high
   {
     //check whether the signal is a peak noise or a consistent increasing/decreasing signal
-    if(grad1*grad2 < 0) // the gradient is negative, different sign between gradient
-    {
       return prev; 
-    }else {
-      return now;
-    }
   }else {
     return now;
   }
@@ -485,4 +493,3 @@ float updatePrev (char c)
       break;
   }  
 }
-
