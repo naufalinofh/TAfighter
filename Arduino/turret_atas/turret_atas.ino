@@ -1,4 +1,3 @@
-
 /*     Turret Control
  *      Created by: Naufalino Fadel Hutomo
  *      
@@ -55,8 +54,6 @@ float gun_prev = 0 , gun_prev2=0;
 
 bool step_dir = HIGH; //CW is HIGH
 
-//JSON Config
-StaticJsonBuffer<200> jsonBuffer;
 
 void setup() {
   // Sets pins Mode
@@ -96,7 +93,7 @@ bool get_setPoint(){  //get setpoint from serial data from server
     String s[4];  //array of substring
     String temp;
       
-    /** Manual Parsing from serial
+    // Manual Parsing from serial
     if (c == '\n') //while not end of serial data
     { 
       //do stuff      
@@ -156,14 +153,26 @@ bool get_setPoint(){  //get setpoint from serial data from server
       readStr += c; //makes the string readString
       return false;
     }
-    **/
-    
+   
+    c=Serial.read();
+    /*
     //JSON PArsing
-    JsonObject& ob = jsonBuffer.parse(Serial);      
-    cam_set = ob["cam"];
-    tilt_set = ob["tilt"];
-    gun_set = ob["gun"];
-    yaw_act = ob["yaw_act"];
+    DynamicJsonBuffer jsonBuffer(300);
+    JsonObject& ob = jsonBuffer.parseObject(Serial);      
+    if (ob.success())
+    {
+      cam_set = ob["cam"];
+      tilt_set = ob["tilt"];
+      gun_set = ob["gun"];
+      yaw_act = ob["yaw_act"];  
+      Serial.print("\t JSON Success");
+      Serial.print("\t cam_set");
+      Serial.print(cam_set);
+    }else
+    {
+      Serial.print(c);//Serial.println("json not caught");
+    }
+    */
       
 }
 
@@ -380,8 +389,7 @@ void move_all(){
   //DEBUG PURPOSE Serial.print("move all");
   if(tilt_set != tilt_prev) //if the value change
   {
-    ///DEBUG
-    tilt_set = filter('t');
+    ///DEBUGtilt_set = filter('t');
     move_tilt(tilt_set);
   }
   /*
@@ -391,14 +399,12 @@ void move_all(){
   }*/
   if(cam_set != cam_act) //if the value change
   {
-    ///DEBUG
-    cam_set = filter('c');
+    ///DEBUGcam_set = filter('c');
     move_cams(cam_set);
   }
   if(gun_set != gun_prev) //if the value change
   {
-    ///DEBUG
-    gun_set = filter('g');
+    ///DEBUGgun_set = filter('g');
     move_gun(gun_set);
   }
 }
