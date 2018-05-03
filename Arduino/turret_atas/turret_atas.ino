@@ -53,6 +53,8 @@ float gun_set = 0;   //for gun pitch set condition
 float gun_prev = 0 , gun_prev2=0;
 
 bool step_dir = HIGH; //CW is HIGH
+unsigned long current=millis();
+unsigned long last=current;
 
 
 void setup() {
@@ -80,10 +82,16 @@ void setup() {
 void loop() {
   if (Serial.available()>0)
   {
+    last=current;
+    current=millis();
+
+    Serial.print("Latency = ");
+    Serial.print(current-last);
+    /*
     if(get_setPoint())
     {
       move_all();   // move all actuator  
-    }
+    }*/
   }
 }
 
