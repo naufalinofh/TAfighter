@@ -3,7 +3,6 @@
  *      
  */
 //Library
-#include <ArduinoJson.h>
 #include <Servo.h>
 #include <string.h>
 #include <Wire.h>
@@ -17,7 +16,7 @@
 #define stepPin2 9 //pulse pin for controlling stepper, IN2. Blue
 #define stepPin3 10 //pulse pin for controlling stepper, IN3. Green
 #define stepPin4 11 //pulse pin for controlling stepper, IN4. Black
-#define compassPin A3// pin to control which compass is active, low for compass_cam, high for compass_turret
+//#define compassPin A3// pin to control which compass is active, low for compass_cam, high for compass_turret
 
 //Function Definition
 void get_setpoint();
@@ -34,7 +33,7 @@ Servo servo_gun; // // servo object for gun pitch
 
 //CONSTANT
 const float step_RES = 0.088 ; // step resolution is 360/64 step (from motor) / 64 (gearbox). If you want to change the resolution, change the driver configuration. Driver configuration 010 -> quarter step
-const float yaw_RES = 1.8/4 ; //nema 17 resolution is 1.8 degree, with gear ratio between motor and turret is 1:4
+const float yaw_RES = 0.45; //1.45 = 1.8/4 //nema 17 resolution is 1.8 degree, with gear ratio between motor and turret is 1:4
 
 String readStr;
 float cam_set = 0;  //for camera pan set condition
@@ -53,8 +52,6 @@ float gun_set = 0;   //for gun pitch set condition
 float gun_prev = 0 , gun_prev2=0;
 
 bool step_dir = HIGH; //CW is HIGH
-unsigned long current=millis();
-unsigned long last=current;
 
 
 void setup() {
@@ -70,7 +67,7 @@ void setup() {
   pinMode(stepPin,OUTPUT); 
   pinMode(dirPin,OUTPUT);
   
-  Serial.begin(9600); // serial comm to raspi
+  Serial.begin(115200); // serial comm to raspi
   //Serial.print("Setup start");
   
   //Calibrating all actuator
@@ -82,16 +79,10 @@ void setup() {
 void loop() {
   if (Serial.available()>0)
   {
-    last=current;
-    current=millis();
-
-    Serial.print("Latency = ");
-    Serial.print(current-last);
-    /*
     if(get_setPoint())
     {
       move_all();   // move all actuator  
-    }*/
+    }
   }
 }
 
@@ -100,16 +91,13 @@ bool get_setPoint(){  //get setpoint from serial data from server
     char c = Serial.read();  //gets one byte from serial buffer
     String s[4];  //array of substring
     String temp;
-      
-    // Manual Parsing from serial
     if (c == '\n') //while not end of serial data
     { 
       //do stuff      
       ///DEBUGSerial.println();
       ///DEBUGSerial.print("captured String is : "); 
       ///DEBUGSerial.println(readStr); //prints string to serial port out
-
-      //Parsing Serial
+   
       idx[0] = readStr.indexOf(',');  //finds location of first ,
       s[0] = readStr.substring(0, idx[0]);   //captures first data String
       idx[1] = readStr.indexOf(',', idx[0]+1 );   //finds location of second ,
@@ -117,7 +105,7 @@ bool get_setPoint(){  //get setpoint from serial data from server
       idx[2] = readStr.indexOf(',', idx[1]+1 );
       s[2] = readStr.substring(idx[1]+1, idx[2]);
       s[3] = readStr.substring(idx[2]+1); //captures remain part of data after last ,
-      
+
       for (int i=0; i<4;i++)
       {
         ///DEBUGSerial.print(" first char = ");
@@ -151,7 +139,6 @@ bool get_setPoint(){  //get setpoint from serial data from server
           default: break;
         }
       }
-      
       readStr=""; //clears variable for new input
       Serial.flush();
       return true;
@@ -161,29 +148,9 @@ bool get_setPoint(){  //get setpoint from serial data from server
       readStr += c; //makes the string readString
       return false;
     }
-   
-    c=Serial.read();
-    /*
-    //JSON PArsing
-    DynamicJsonBuffer jsonBuffer(300);
-    JsonObject& ob = jsonBuffer.parseObject(Serial);      
-    if (ob.success())
-    {
-      cam_set = ob["cam"];
-      tilt_set = ob["tilt"];
-      gun_set = ob["gun"];
-      yaw_act = ob["yaw_act"];  
-      Serial.print("\t JSON Success");
-      Serial.print("\t cam_set");
-      Serial.print(cam_set);
-    }else
-    {
-      Serial.print(c);//Serial.println("json not caught");
-    }
-    */
-      
 }
 
+/*
 void move_cam(float degree){
   float err;
   const float tolerance = 3.0;
@@ -191,7 +158,8 @@ void move_cam(float degree){
 
   float cam_setd = -degree+ 90;  //map to servo degree between 0-180//reverse, EDIT if not reversed
  // servo_cam.write(cam_setd);
-}
+  updatePrev('c');
+}*/
 
 void move_tilt(float degree){
   float tilt_setd = degree+ 90;  //map to servo degree between 0-180. //direction of servo is reversed because of current servo configuration.
@@ -206,7 +174,8 @@ void move_tilt(float degree){
   
   servo_tilt.write(tilt_setd); 
   updatePrev('t');
-  //DEBUGSerial.print("\n tilt ");Serial.print(tilt_prev2);Serial.print(tilt_prev);Serial.print(tilt_set);
+  //DEBUG
+  //Serial.print("\n tilt ");Serial.print(tilt_prev2);Serial.print(tilt_prev);Serial.print(tilt_set);
 }
 
 void stepper(){
@@ -313,7 +282,7 @@ void move_cams(float degreeSet){
     
     updatePrev('c');
    ///DEBUG
-   Serial.print("\tcam_act = ");
+   Serial.print("cam_act = ");
    ///DEBUG
    Serial.print(cam_act);
       ///DEBUG
@@ -349,13 +318,15 @@ void move_turret(float degree){
   Serial.print(step_count);
   */
   
+  //give pulse to stepper
+  /* COMMENT THIS LINE BC THE TURRET IS MOVED SEPARATELY BY NODEMCU
   for (int i=1; i < step_count; i++)
   {
     digitalWrite(stepPin,HIGH); 
     delayMicroseconds(500); 
     digitalWrite(stepPin,LOW); 
     delayMicroseconds(500);
-  }
+  } */
   
   if (err>0)
   {
@@ -368,7 +339,7 @@ void move_turret(float degree){
   }
 
   //move camera to initial setpoint before turret moved
-  move_cam(cam_set);
+  //move_cams(cam_set);
   
   /*DEBUG PURPOSE
   Serial.print("yaw_act = ");
@@ -378,13 +349,14 @@ void move_turret(float degree){
 void move_gun(float degree){
   float gun_setd = degree;  //map to servo degree between 0-180. Reverse, EDIT this line if the servo is not reversed
   // set limit for pitch
-  gun_setd += 90;
-  if (gun_setd < 70) //degree < -20
+  gun_setd *= 4.5;    //4.5 is the ratio between servo degree and gun degree. The factor comes from experiment. 
+  gun_setd += 90;     // Map to servo degree between 0-180
+  if (gun_setd < 20) //degree < -20
   {
-    gun_setd = 70;
-  }else if (gun_setd > 150)    //degree > 60
+    gun_setd = 20;
+  }else if (gun_setd > 170)    //degree > 60
   {
-    gun_setd = 150;
+    gun_setd = 170;
   }
   
   servo_gun.write(gun_setd);
@@ -400,11 +372,11 @@ void move_all(){
     ///DEBUGtilt_set = filter('t');
     move_tilt(tilt_set);
   }
-  /*
+  /**/
   if(yaw_set != yaw_act) //if the value change
   {
     move_turret(yaw_set);
-  }*/
+  }
   if(cam_set != cam_act) //if the value change
   {
     ///DEBUGcam_set = filter('c');
