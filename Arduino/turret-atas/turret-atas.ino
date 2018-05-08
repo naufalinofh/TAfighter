@@ -20,7 +20,8 @@
 
 //Function Definition
 void get_setpoint();
-void move_cam(float degree);
+void move_cams(float degree);
+void move_turret(float degree);
 void move_tilt(float degree);
 void move_stepper(float degree);
 void move_gun(float degree);
@@ -72,7 +73,7 @@ void setup() {
   
   //Calibrating all actuator
   move_gun(0);
-  move_cam(0);
+  move_cams(0);
   move_tilt(0);
   
 }
@@ -132,7 +133,7 @@ bool get_setPoint(){  //get setpoint from serial data from server
             break;
           case 'y' :
             temp = s[i].substring(1);
-             yaw_act = (float) temp.toFloat();  //this data came from nodeMCU that control stepper
+             yaw_set = (float) temp.toFloat();  //this data came from nodeMCU that control stepper
              ///DEBUGSerial.print(" yaw act = ");
             ///DEBUGSerial.println(yaw_act);
             break;
@@ -283,16 +284,14 @@ void move_cams(float degreeSet){
     updatePrev('c');
    ///DEBUG
    Serial.print("cam_act = ");
-   ///DEBUG
+   ///DEBUG  
    Serial.print(cam_act);
-      ///DEBUG
+   ///DEBUG   
    Serial.print(" \tcam_set = ");
-   ///DEBUG
+   ///DEBUG   
    Serial.print(cam_set);
-   ///DEBUG
-   Serial.print(" \tstep = ");
-   ///DEBUG
-   Serial.println(step_req);
+   ///DEBUG   Serial.print(" \tstep = ");
+   ///DEBUG   Serial.println(step_req);
 
     ///DEBUGSerial.print("\n cam ");Serial.print(cam_prev2);Serial.print(cam_prev);Serial.print(cam_act);
 
@@ -300,18 +299,18 @@ void move_cams(float degreeSet){
 
 
 void move_turret(float degree){
-  //Function to move turret with nema 17 stepper
+  //Function to move turret with nema 23 stepper
   float err = normalDeg(degree - yaw_act);
   int step_count;
   
-  if (err>0)
+  if (err>=0)
   {
-    digitalWrite(dirPin,LOW); // Enables the motor to move with vector direction upward the axis. In this case, move gear ccw -> move turret in clockwise direction
-    step_count = err / yaw_RES;
+    //digitalWrite(dirPin,LOW); // Enables the motor to move with vector direction upward the axis. In this case, move gear ccw -> move turret in clockwise direction
+    step_count = round(err / yaw_RES);
   }else
   {
-    digitalWrite(dirPin,HIGH); // Enables the motor to move turret in counterclockwise direction
-    step_count = -err / yaw_RES;
+    //digitalWrite(dirPin,HIGH); // Enables the motor to move turret in counterclockwise direction
+    step_count = round(-err / yaw_RES);
   }
   /*DEBUG PURPOSE
   Serial.print("  step_count = ");
@@ -340,7 +339,14 @@ void move_turret(float degree){
 
   //move camera to initial setpoint before turret moved
   //move_cams(cam_set);
-  
+
+  ///DEBUG   Serial.print("move turret \t");
+  ///DEBUG   Serial.print("yaw act = ");
+  ///DEBUG   Serial.print(yaw_act);
+  ///DEBUG   Serial.print(" \tyaw_set = ");
+  ///DEBUG   Serial.print(yaw_set);
+  ///DEBUG   Serial.print(" \tcam_act = ");
+  ///DEBUG   Serial.print(cam_act);
   /*DEBUG PURPOSE
   Serial.print("yaw_act = ");
   Serial.print(yaw_act);
