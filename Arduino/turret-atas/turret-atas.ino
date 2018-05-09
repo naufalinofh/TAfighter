@@ -6,7 +6,7 @@
 #include <Servo.h>
 #include <string.h>
 #include <Wire.h>
-//#include <avr/wdt.h>  //library watchdog timer
+#include <avr/wdt.h>  //library watchdog timer
 
 #define wdt_reset() __asm__ __volatile__ ("wdr")
 #define servoTILT 5 //digital pin for camera tilt setpoint signal
@@ -57,7 +57,8 @@ bool step_dir = HIGH; //CW is HIGH
 
 
 void setup() {
-  //WD/  wdt_disable();
+  //WD/  
+  wdt_disable();
   // Sets pins Mode
   //pinMode(stepPin,OUTPUT); 
   pinMode(stepPin1, OUTPUT);
@@ -78,7 +79,8 @@ void setup() {
   move_cams(0);
   move_tilt(0);
 
-  //WD/  wdt_enable( WDTO_8S ); //enable watchdog timer
+  //WD/    
+  wdt_enable(WDTO_8S); //enable watchdog timer, timeout value 8s
   
 }
 void loop() {
@@ -89,6 +91,50 @@ void loop() {
       move_all();   // move all actuator  
     }
   }
+}
+
+void watchdog_setup(int t){
+  //This function set the register for watchdog timer
+  
+  //WDP3 - WDP2 - WPD1 - WDP0 - time
+  // 0      0      0      0      16 ms
+  // 0      0      0      1      32 ms
+  // 0      0      1      0      64 ms
+  // 0      0      1      1      0.125 s
+  // 0      1      0      0      0.25 s
+  // 0      1      0      1      0.5 s
+  // 0      1      1      0      1.0 s
+  // 0      1      1      1      2.0 s
+  // 1      0      0      0      4.0 s
+  // 1      0      0      1      8.0 s
+
+
+  // Reset the watchdog reset flag
+  bitClear(MCUSR, WDRF);
+  // Start timed sequence
+  bitSet(WDTCSR, WDCE); //Watchdog Change Enable to clear WD
+  bitSet(WDTCSR, WDE); //Enable WD
+
+  switch (t){
+    case 8 : 
+    // Set new watchdog timeout value to 8 second
+    bitSet(WDTCSR, WDP3);
+    bitSet(WDTCSR, WDP0);  
+    break;
+    default:    //default is 2s
+    bitSet(WDTCSR, WDP2);
+    bitSet(WDTCSR, WDP1);
+    bitSet(WDTCSR, WDP0);
+  }
+   
+  // Enable interrupts instead of reset
+  //bitSet(WDTCSR, WDIE);
+}
+
+ISR(WDT_vect) {
+  // Don't do anything here but we must include this
+  // block of code otherwise the interrupt calls an
+  // uninitialized interrupt handler.
 }
 
 bool get_setPoint(){  //get setpoint from serial data from server
@@ -147,7 +193,8 @@ bool get_setPoint(){  //get setpoint from serial data from server
       
       readStr=""; //clears variable for new input
       Serial.flush();
-      //WD      wdt_reset();  //reset the watch dog timer 
+      //WD      
+      wdt_reset();  //reset the watch dog timer 
       return true;
     }
     else
