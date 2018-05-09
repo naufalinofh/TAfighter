@@ -6,8 +6,9 @@
 #include <Servo.h>
 #include <string.h>
 #include <Wire.h>
+//#include <avr/wdt.h>  //library watchdog timer
 
-//#define servoCAM 3 //digital pin for camera pan setpoint signal
+#define wdt_reset() __asm__ __volatile__ ("wdr")
 #define servoTILT 5 //digital pin for camera tilt setpoint signal
 #define servoGUN 6 //servo for control gun
 #define stepPin 3 //pulse pin for controlliong turret stepper
@@ -56,6 +57,7 @@ bool step_dir = HIGH; //CW is HIGH
 
 
 void setup() {
+  //WD/  wdt_disable();
   // Sets pins Mode
   //pinMode(stepPin,OUTPUT); 
   pinMode(stepPin1, OUTPUT);
@@ -69,12 +71,14 @@ void setup() {
   pinMode(dirPin,OUTPUT);
   
   Serial.begin(115200); // serial comm to raspi
-  //Serial.print("Setup start");
+  Serial.print("Setup start");
   
   //Calibrating all actuator
   move_gun(0);
   move_cams(0);
   move_tilt(0);
+
+  //WD/  wdt_enable( WDTO_8S ); //enable watchdog timer
   
 }
 void loop() {
@@ -140,8 +144,10 @@ bool get_setPoint(){  //get setpoint from serial data from server
           default: break;
         }
       }
+      
       readStr=""; //clears variable for new input
       Serial.flush();
+      //WD      wdt_reset();  //reset the watch dog timer 
       return true;
     }
     else
@@ -289,7 +295,7 @@ void move_cams(float degreeSet){
    ///DEBUG   
    Serial.print(" \tcam_set = ");
    ///DEBUG   
-   Serial.print(cam_set);
+   Serial.println(cam_set);
    ///DEBUG   Serial.print(" \tstep = ");
    ///DEBUG   Serial.println(step_req);
 
@@ -352,6 +358,7 @@ void move_turret(float degree){
   Serial.print(yaw_act);
   */
 }
+
 void move_gun(float degree){
   float gun_setd = degree;  //map to servo degree between 0-180. Reverse, EDIT this line if the servo is not reversed
   // set limit for pitch
@@ -372,7 +379,7 @@ void move_gun(float degree){
 }
 
 void move_all(){
-  //DEBUG PURPOSE Serial.print("move all");
+  
   if(tilt_set != tilt_prev) //if the value change
   {
     ///DEBUGtilt_set = filter('t');
@@ -421,6 +428,7 @@ bool isTolerant(float ex, float real, float tol)
   }
   return ret;
 }
+
 
 float filter (char c)
 {
