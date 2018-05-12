@@ -71,7 +71,7 @@ void setup() {
   pinMode(stepPin,OUTPUT); 
   pinMode(dirPin,OUTPUT);
   
-  Serial.begin(115200); // serial comm to raspi
+  Serial.begin(115200,SERIAL_8E1); // serial comm to raspi
   Serial.print("Setup start");
   
   //Calibrating all actuator
