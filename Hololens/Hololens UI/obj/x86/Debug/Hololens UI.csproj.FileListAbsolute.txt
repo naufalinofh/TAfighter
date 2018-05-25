@@ -1,0 +1,431 @@
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\bin\x86\Debug\mono-holourho.dll
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\bin\x86\Debug\CoreData.pak
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\bin\x86\Debug\Hololens UI.exe
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\bin\x86\Debug\Hololens UI.pdb
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\bin\x86\Debug\resources.pri
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\bin\x86\Debug\AppxManifest.xml
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\bin\x86\Debug\Core\AppxManifest.xml
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\bin\x86\Debug\Core\Hololens UI.exe
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\bin\x86\Debug\Hololens UI.build.appxrecipe
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\bin\x86\Debug\Microsoft.CSharp.dll
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\bin\x86\Debug\System.ComponentModel.DataAnnotations.dll
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\bin\x86\Debug\System.Core.dll
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\bin\x86\Debug\System.Net.dll
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\bin\x86\Debug\System.Numerics.dll
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\bin\x86\Debug\System.Runtime.Serialization.dll
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\bin\x86\Debug\System.ServiceModel.Web.dll
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\bin\x86\Debug\System.ServiceModel.dll
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\bin\x86\Debug\System.Windows.dll
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\bin\x86\Debug\System.Xml.Linq.dll
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\bin\x86\Debug\System.Xml.Serialization.dll
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\bin\x86\Debug\System.Xml.dll
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\bin\x86\Debug\System.dll
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\bin\x86\Debug\Microsoft.VisualBasic.dll
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\bin\x86\Debug\System.Collections.dll
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\bin\x86\Debug\System.Diagnostics.Tools.dll
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\bin\x86\Debug\System.Diagnostics.Tracing.dll
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\bin\x86\Debug\System.Globalization.dll
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\bin\x86\Debug\System.Globalization.Calendars.dll
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\bin\x86\Debug\System.IO.dll
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\bin\x86\Debug\System.Reflection.dll
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\bin\x86\Debug\System.Reflection.Extensions.dll
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\bin\x86\Debug\System.Reflection.Primitives.dll
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\bin\x86\Debug\System.Resources.ResourceManager.dll
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\bin\x86\Debug\System.Runtime.dll
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\bin\x86\Debug\System.Runtime.Handles.dll
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\bin\x86\Debug\System.Runtime.InteropServices.dll
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\bin\x86\Debug\System.Text.Encoding.dll
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\bin\x86\Debug\System.Text.Encoding.Extensions.dll
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\bin\x86\Debug\System.Threading.Tasks.dll
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\bin\x86\Debug\System.Threading.Timer.dll
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\bin\x86\Debug\Microsoft.Win32.Primitives.dll
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\bin\x86\Debug\System.Diagnostics.Debug.dll
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\bin\x86\Debug\System.IO.FileSystem.dll
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\bin\x86\Debug\System.Net.Primitives.dll
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\bin\x86\Debug\System.Net.Sockets.dll
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\bin\x86\Debug\System.Runtime.Extensions.dll
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\bin\x86\Debug\clrjit.dll
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\bin\x86\Debug\clrcompression.dll
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\bin\x86\Debug\System.Private.Uri.dll
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\bin\x86\Debug\System.AppContext.dll
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\bin\x86\Debug\System.Buffers.dll
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\bin\x86\Debug\System.Collections.Concurrent.dll
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\bin\x86\Debug\System.Collections.Immutable.dll
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\bin\x86\Debug\System.Collections.NonGeneric.dll
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\bin\x86\Debug\System.Collections.Specialized.dll
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\bin\x86\Debug\System.ComponentModel.dll
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\bin\x86\Debug\System.ComponentModel.Annotations.dll
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\bin\x86\Debug\System.ComponentModel.EventBasedAsync.dll
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\bin\x86\Debug\System.Data.Common.dll
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\bin\x86\Debug\System.Diagnostics.Contracts.dll
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\bin\x86\Debug\System.Diagnostics.DiagnosticSource.dll
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\bin\x86\Debug\System.Diagnostics.StackTrace.dll
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\bin\x86\Debug\System.Dynamic.Runtime.dll
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\bin\x86\Debug\System.Globalization.Extensions.dll
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\bin\x86\Debug\System.IO.Compression.dll
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\bin\x86\Debug\System.IO.Compression.ZipFile.dll
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\bin\x86\Debug\System.IO.FileSystem.Primitives.dll
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\bin\x86\Debug\System.IO.IsolatedStorage.dll
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\bin\x86\Debug\System.IO.UnmanagedMemoryStream.dll
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\bin\x86\Debug\System.Linq.dll
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\bin\x86\Debug\System.Linq.Expressions.dll
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\bin\x86\Debug\System.Linq.Parallel.dll
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\bin\x86\Debug\System.Linq.Queryable.dll
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\bin\x86\Debug\System.Net.Http.dll
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\bin\x86\Debug\System.Net.Http.Rtc.dll
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\bin\x86\Debug\System.Net.NameResolution.dll
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\bin\x86\Debug\System.Net.NetworkInformation.dll
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\bin\x86\Debug\System.Net.Requests.dll
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\bin\x86\Debug\System.Net.WebHeaderCollection.dll
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\bin\x86\Debug\System.Net.WebSockets.dll
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\bin\x86\Debug\System.Net.WebSockets.Client.dll
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\bin\x86\Debug\System.Numerics.Vectors.dll
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\bin\x86\Debug\System.Numerics.Vectors.WindowsRuntime.dll
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\bin\x86\Debug\System.ObjectModel.dll
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\bin\x86\Debug\System.Private.DataContractSerialization.dll
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\bin\x86\Debug\System.Private.ServiceModel.dll
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\bin\x86\Debug\System.Reflection.Context.dll
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\bin\x86\Debug\System.Reflection.DispatchProxy.dll
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\bin\x86\Debug\System.Reflection.Emit.dll
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\bin\x86\Debug\System.Reflection.Emit.ILGeneration.dll
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\bin\x86\Debug\System.Reflection.Emit.Lightweight.dll
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\bin\x86\Debug\System.Reflection.Metadata.dll
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\bin\x86\Debug\System.Reflection.TypeExtensions.dll
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\bin\x86\Debug\System.Runtime.InteropServices.WindowsRuntime.dll
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\bin\x86\Debug\System.Runtime.Numerics.dll
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\bin\x86\Debug\System.Runtime.Serialization.Json.dll
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\bin\x86\Debug\System.Runtime.Serialization.Primitives.dll
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\bin\x86\Debug\System.Runtime.Serialization.Xml.dll
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\bin\x86\Debug\System.Runtime.WindowsRuntime.dll
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\bin\x86\Debug\System.Runtime.WindowsRuntime.UI.Xaml.dll
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\bin\x86\Debug\System.Security.Claims.dll
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\bin\x86\Debug\System.Security.Cryptography.Algorithms.dll
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\bin\x86\Debug\System.Security.Cryptography.Cng.dll
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\bin\x86\Debug\System.Security.Cryptography.Encoding.dll
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\bin\x86\Debug\System.Security.Cryptography.Primitives.dll
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\bin\x86\Debug\System.Security.Cryptography.X509Certificates.dll
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\bin\x86\Debug\System.Security.Principal.dll
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\bin\x86\Debug\System.ServiceModel.Duplex.dll
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\bin\x86\Debug\System.ServiceModel.Http.dll
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\bin\x86\Debug\System.ServiceModel.NetTcp.dll
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\bin\x86\Debug\System.ServiceModel.Primitives.dll
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\bin\x86\Debug\System.ServiceModel.Security.dll
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\bin\x86\Debug\System.Text.Encoding.CodePages.dll
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\bin\x86\Debug\System.Text.RegularExpressions.dll
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\bin\x86\Debug\System.Threading.dll
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\bin\x86\Debug\System.Threading.Overlapped.dll
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\bin\x86\Debug\System.Threading.Tasks.Dataflow.dll
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\bin\x86\Debug\System.Threading.Tasks.Extensions.dll
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\bin\x86\Debug\System.Threading.Tasks.Parallel.dll
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\bin\x86\Debug\System.Xml.ReaderWriter.dll
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\bin\x86\Debug\System.Xml.XDocument.dll
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\bin\x86\Debug\System.Xml.XmlDocument.dll
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\bin\x86\Debug\System.Xml.XmlSerializer.dll
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\bin\x86\Debug\Urho.dll
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\obj\x86\Debug\Hololens UI.exe
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\obj\x86\Debug\Hololens UI.pdb
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\obj\x86\Debug\ResourceHandlingTask.state
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\obj\x86\Debug\FxResources.Microsoft.CSharp.SR.resw
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\obj\x86\Debug\FxResources.Microsoft.VisualBasic.SR.resw
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\obj\x86\Debug\FxResources.System.Collections.SR.resw
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\obj\x86\Debug\FxResources.System.IO.SR.resw
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\obj\x86\Debug\FxResources.System.Runtime.InteropServices.SR.resw
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\obj\x86\Debug\FxResources.System.Diagnostics.Debug.SR.resw
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\obj\x86\Debug\FxResources.System.IO.FileSystem.SR.resw
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\obj\x86\Debug\FxResources.System.Net.Primitives.SR.resw
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\obj\x86\Debug\FxResources.System.Net.Sockets.SR.resw
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\obj\x86\Debug\FxResources.System.Runtime.Extensions.SR.resw
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\obj\x86\Debug\FxResources.System.Private.Uri.SR.resw
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\obj\x86\Debug\FxResources.System.Buffers.SR.resw
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\obj\x86\Debug\FxResources.System.Collections.Concurrent.SR.resw
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\obj\x86\Debug\FxResources.System.Collections.Immutable.SR.resw
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\obj\x86\Debug\FxResources.System.Collections.NonGeneric.SR.resw
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\obj\x86\Debug\FxResources.System.Collections.Specialized.SR.resw
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\obj\x86\Debug\FxResources.System.ComponentModel.Annotations.SR.resw
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\obj\x86\Debug\FxResources.System.ComponentModel.EventBasedAsync.SR.resw
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\obj\x86\Debug\FxResources.System.Data.Common.SR.resw
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\obj\x86\Debug\FxResources.System.Dynamic.Runtime.SR.resw
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\obj\x86\Debug\FxResources.System.Globalization.Extensions.SR.resw
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\obj\x86\Debug\FxResources.System.IO.Compression.SR.resw
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\obj\x86\Debug\FxResources.System.IO.Compression.ZipFile.SR.resw
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\obj\x86\Debug\FxResources.System.IO.IsolatedStorage.SR.resw
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\obj\x86\Debug\FxResources.System.IO.UnmanagedMemoryStream.SR.resw
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\obj\x86\Debug\FxResources.System.Linq.SR.resw
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\obj\x86\Debug\FxResources.System.Linq.Expressions.SR.resw
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\obj\x86\Debug\FxResources.System.Linq.Parallel.SR.resw
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\obj\x86\Debug\FxResources.System.Linq.Queryable.SR.resw
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\obj\x86\Debug\FxResources.System.Net.Http.SR.resw
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\obj\x86\Debug\FxResources.System.Net.NameResolution.SR.resw
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\obj\x86\Debug\FxResources.System.Net.NetworkInformation.SR.resw
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\obj\x86\Debug\FxResources.System.Net.Requests.SR.resw
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\obj\x86\Debug\FxResources.System.Net.WebHeaderCollection.SR.resw
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\obj\x86\Debug\FxResources.System.Net.WebSockets.SR.resw
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\obj\x86\Debug\FxResources.System.Net.WebSockets.Client.SR.resw
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\obj\x86\Debug\FxResources.System.Numerics.Vectors.SR.resw
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\obj\x86\Debug\FxResources.System.ObjectModel.SR.resw
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\obj\x86\Debug\FxResources.System.Private.DataContractSerialization.SR.resw
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\obj\x86\Debug\FxResources.System.Private.ServiceModel.SR.resw
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\obj\x86\Debug\FxResources.System.Reflection.DispatchProxy.SR.resw
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\obj\x86\Debug\FxResources.System.Reflection.Metadata.SR.resw
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\obj\x86\Debug\FxResources.System.Runtime.Numerics.SR.resw
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\obj\x86\Debug\FxResources.System.Runtime.Serialization.Primitives.SR.resw
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\obj\x86\Debug\FxResources.System.Runtime.WindowsRuntime.SR.resw
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\obj\x86\Debug\FxResources.System.Runtime.WindowsRuntime.UI.Xaml.SR.resw
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\obj\x86\Debug\FxResources.System.Security.Claims.SR.resw
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\obj\x86\Debug\FxResources.System.Security.Cryptography.Algorithms.SR.resw
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\obj\x86\Debug\FxResources.System.Security.Cryptography.Cng.SR.resw
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\obj\x86\Debug\FxResources.System.Security.Cryptography.Encoding.SR.resw
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\obj\x86\Debug\FxResources.System.Security.Cryptography.Primitives.SR.resw
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\obj\x86\Debug\FxResources.System.Security.Cryptography.X509Certificates.SR.resw
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\obj\x86\Debug\FxResources.System.Text.Encoding.CodePages.SR.resw
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\obj\x86\Debug\FxResources.System.Text.RegularExpressions.SR.resw
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\obj\x86\Debug\FxResources.System.Threading.SR.resw
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\obj\x86\Debug\FxResources.System.Threading.Overlapped.SR.resw
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\obj\x86\Debug\FxResources.System.Threading.Tasks.Dataflow.SR.resw
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\obj\x86\Debug\FxResources.System.Threading.Tasks.Parallel.SR.resw
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\obj\x86\Debug\FxResources.System.Xml.ReaderWriter.SR.resw
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\obj\x86\Debug\FxResources.System.Xml.XDocument.SR.resw
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\obj\x86\Debug\FxResources.System.Xml.XmlDocument.SR.resw
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\obj\x86\Debug\FxResources.System.Xml.XmlSerializer.SR.resw
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\obj\x86\Debug\Hololens UI.csproj.GenerateResource.Cache
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\obj\x86\Debug\priconfig.xml
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\obj\x86\Debug\priconfig.xml.intermediate
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\obj\x86\Debug\layout.resfiles
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\obj\x86\Debug\layout.resfiles.intermediate
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\obj\x86\Debug\resources.resfiles
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\obj\x86\Debug\resources.resfiles.intermediate
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\obj\x86\Debug\pri.resfiles
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\obj\x86\Debug\pri.resfiles.intermediate
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\obj\x86\Debug\qualifiers.txt
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\obj\x86\Debug\qualifiers.txt.intermediate
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\obj\x86\Debug\MultipleQualifiersPerDimensionFound.txt
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\obj\x86\Debug\ProjectArchitectures.txt
+D:\RANGGA\TA\Hololens UI\Hololens UI\Hololens UI\obj\x86\Debug\Hololens UI.csprojResolveAssemblyReference.cache
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\bin\x86\Debug\mono-holourho.dll
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\bin\x86\Debug\CoreData.pak
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\bin\x86\Debug\Hololens UI.exe
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\bin\x86\Debug\Hololens UI.pdb
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\bin\x86\Debug\resources.pri
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\bin\x86\Debug\AppxManifest.xml
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\bin\x86\Debug\Core\AppxManifest.xml
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\bin\x86\Debug\Core\Hololens UI.exe
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\bin\x86\Debug\Hololens UI.build.appxrecipe
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\bin\x86\Debug\Microsoft.CSharp.dll
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\bin\x86\Debug\System.ComponentModel.DataAnnotations.dll
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\bin\x86\Debug\System.Core.dll
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\bin\x86\Debug\System.Net.dll
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\bin\x86\Debug\System.Numerics.dll
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\bin\x86\Debug\System.Runtime.Serialization.dll
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\bin\x86\Debug\System.ServiceModel.Web.dll
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\bin\x86\Debug\System.ServiceModel.dll
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\bin\x86\Debug\System.Windows.dll
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\bin\x86\Debug\System.Xml.Linq.dll
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\bin\x86\Debug\System.Xml.Serialization.dll
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\bin\x86\Debug\System.Xml.dll
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\bin\x86\Debug\System.dll
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\bin\x86\Debug\Microsoft.VisualBasic.dll
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\bin\x86\Debug\System.Collections.dll
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\bin\x86\Debug\System.Diagnostics.Tools.dll
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\bin\x86\Debug\System.Diagnostics.Tracing.dll
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\bin\x86\Debug\System.Globalization.dll
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\bin\x86\Debug\System.Globalization.Calendars.dll
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\bin\x86\Debug\System.IO.dll
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\bin\x86\Debug\System.Reflection.dll
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\bin\x86\Debug\System.Reflection.Extensions.dll
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\bin\x86\Debug\System.Reflection.Primitives.dll
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\bin\x86\Debug\System.Resources.ResourceManager.dll
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\bin\x86\Debug\System.Runtime.dll
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\bin\x86\Debug\System.Runtime.Handles.dll
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\bin\x86\Debug\System.Runtime.InteropServices.dll
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\bin\x86\Debug\System.Text.Encoding.dll
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\bin\x86\Debug\System.Text.Encoding.Extensions.dll
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\bin\x86\Debug\System.Threading.Tasks.dll
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\bin\x86\Debug\System.Threading.Timer.dll
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\bin\x86\Debug\Microsoft.Win32.Primitives.dll
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\bin\x86\Debug\System.Diagnostics.Debug.dll
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\bin\x86\Debug\System.IO.FileSystem.dll
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\bin\x86\Debug\System.Net.Primitives.dll
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\bin\x86\Debug\System.Net.Sockets.dll
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\bin\x86\Debug\System.Runtime.Extensions.dll
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\bin\x86\Debug\clrjit.dll
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\bin\x86\Debug\clrcompression.dll
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\bin\x86\Debug\System.Private.Uri.dll
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\bin\x86\Debug\System.AppContext.dll
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\bin\x86\Debug\System.Buffers.dll
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\bin\x86\Debug\System.Collections.Concurrent.dll
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\bin\x86\Debug\System.Collections.Immutable.dll
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\bin\x86\Debug\System.Collections.NonGeneric.dll
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\bin\x86\Debug\System.Collections.Specialized.dll
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\bin\x86\Debug\System.ComponentModel.dll
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\bin\x86\Debug\System.ComponentModel.Annotations.dll
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\bin\x86\Debug\System.ComponentModel.EventBasedAsync.dll
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\bin\x86\Debug\System.Data.Common.dll
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\bin\x86\Debug\System.Diagnostics.Contracts.dll
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\bin\x86\Debug\System.Diagnostics.DiagnosticSource.dll
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\bin\x86\Debug\System.Diagnostics.StackTrace.dll
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\bin\x86\Debug\System.Dynamic.Runtime.dll
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\bin\x86\Debug\System.Globalization.Extensions.dll
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\bin\x86\Debug\System.IO.Compression.dll
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\bin\x86\Debug\System.IO.Compression.ZipFile.dll
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\bin\x86\Debug\System.IO.FileSystem.Primitives.dll
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\bin\x86\Debug\System.IO.IsolatedStorage.dll
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\bin\x86\Debug\System.IO.UnmanagedMemoryStream.dll
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\bin\x86\Debug\System.Linq.dll
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\bin\x86\Debug\System.Linq.Expressions.dll
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\bin\x86\Debug\System.Linq.Parallel.dll
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\bin\x86\Debug\System.Linq.Queryable.dll
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\bin\x86\Debug\System.Net.Http.dll
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\bin\x86\Debug\System.Net.Http.Rtc.dll
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\bin\x86\Debug\System.Net.NameResolution.dll
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\bin\x86\Debug\System.Net.NetworkInformation.dll
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\bin\x86\Debug\System.Net.Requests.dll
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\bin\x86\Debug\System.Net.WebHeaderCollection.dll
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\bin\x86\Debug\System.Net.WebSockets.dll
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\bin\x86\Debug\System.Net.WebSockets.Client.dll
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\bin\x86\Debug\System.Numerics.Vectors.dll
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\bin\x86\Debug\System.Numerics.Vectors.WindowsRuntime.dll
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\bin\x86\Debug\System.ObjectModel.dll
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\bin\x86\Debug\System.Private.DataContractSerialization.dll
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\bin\x86\Debug\System.Private.ServiceModel.dll
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\bin\x86\Debug\System.Reflection.Context.dll
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\bin\x86\Debug\System.Reflection.DispatchProxy.dll
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\bin\x86\Debug\System.Reflection.Emit.dll
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\bin\x86\Debug\System.Reflection.Emit.ILGeneration.dll
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\bin\x86\Debug\System.Reflection.Emit.Lightweight.dll
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\bin\x86\Debug\System.Reflection.Metadata.dll
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\bin\x86\Debug\System.Reflection.TypeExtensions.dll
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\bin\x86\Debug\System.Runtime.InteropServices.WindowsRuntime.dll
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\bin\x86\Debug\System.Runtime.Numerics.dll
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\bin\x86\Debug\System.Runtime.Serialization.Json.dll
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\bin\x86\Debug\System.Runtime.Serialization.Primitives.dll
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\bin\x86\Debug\System.Runtime.Serialization.Xml.dll
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\bin\x86\Debug\System.Runtime.WindowsRuntime.dll
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\bin\x86\Debug\System.Runtime.WindowsRuntime.UI.Xaml.dll
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\bin\x86\Debug\System.Security.Claims.dll
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\bin\x86\Debug\System.Security.Cryptography.Algorithms.dll
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\bin\x86\Debug\System.Security.Cryptography.Cng.dll
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\bin\x86\Debug\System.Security.Cryptography.Encoding.dll
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\bin\x86\Debug\System.Security.Cryptography.Primitives.dll
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\bin\x86\Debug\System.Security.Cryptography.X509Certificates.dll
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\bin\x86\Debug\System.Security.Principal.dll
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\bin\x86\Debug\System.ServiceModel.Duplex.dll
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\bin\x86\Debug\System.ServiceModel.Http.dll
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\bin\x86\Debug\System.ServiceModel.NetTcp.dll
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\bin\x86\Debug\System.ServiceModel.Primitives.dll
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\bin\x86\Debug\System.ServiceModel.Security.dll
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\bin\x86\Debug\System.Text.Encoding.CodePages.dll
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\bin\x86\Debug\System.Text.RegularExpressions.dll
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\bin\x86\Debug\System.Threading.dll
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\bin\x86\Debug\System.Threading.Overlapped.dll
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\bin\x86\Debug\System.Threading.Tasks.Dataflow.dll
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\bin\x86\Debug\System.Threading.Tasks.Extensions.dll
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\bin\x86\Debug\System.Threading.Tasks.Parallel.dll
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\bin\x86\Debug\System.Xml.ReaderWriter.dll
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\bin\x86\Debug\System.Xml.XDocument.dll
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\bin\x86\Debug\System.Xml.XmlDocument.dll
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\bin\x86\Debug\System.Xml.XmlSerializer.dll
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\bin\x86\Debug\Urho.dll
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\bin\x86\Debug\Microsoft.VisualStudio.DebuggerVisualizers.dll
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\bin\x86\Debug\Emgu.CV.UI.xml
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\bin\x86\Debug\Emgu.CV.UI.GL.xml
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\bin\x86\Debug\Emgu.CV.World.xml
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\obj\x86\Debug\Hololens UI.csprojResolveAssemblyReference.cache
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\obj\x86\Debug\Hololens UI.exe
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\obj\x86\Debug\Hololens UI.pdb
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\obj\x86\Debug\ResourceHandlingTask.state
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\obj\x86\Debug\FxResources.Microsoft.CSharp.SR.resw
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\obj\x86\Debug\FxResources.Microsoft.VisualBasic.SR.resw
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\obj\x86\Debug\FxResources.System.Collections.SR.resw
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\obj\x86\Debug\FxResources.System.IO.SR.resw
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\obj\x86\Debug\FxResources.System.Runtime.InteropServices.SR.resw
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\obj\x86\Debug\FxResources.System.Diagnostics.Debug.SR.resw
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\obj\x86\Debug\FxResources.System.IO.FileSystem.SR.resw
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\obj\x86\Debug\FxResources.System.Net.Primitives.SR.resw
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\obj\x86\Debug\FxResources.System.Net.Sockets.SR.resw
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\obj\x86\Debug\FxResources.System.Runtime.Extensions.SR.resw
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\obj\x86\Debug\FxResources.System.Private.Uri.SR.resw
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\obj\x86\Debug\FxResources.System.Buffers.SR.resw
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\obj\x86\Debug\FxResources.System.Collections.Concurrent.SR.resw
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\obj\x86\Debug\FxResources.System.Collections.Immutable.SR.resw
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\obj\x86\Debug\FxResources.System.Collections.NonGeneric.SR.resw
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\obj\x86\Debug\FxResources.System.Collections.Specialized.SR.resw
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\obj\x86\Debug\FxResources.System.ComponentModel.Annotations.SR.resw
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\obj\x86\Debug\FxResources.System.ComponentModel.EventBasedAsync.SR.resw
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\obj\x86\Debug\FxResources.System.Data.Common.SR.resw
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\obj\x86\Debug\FxResources.System.Dynamic.Runtime.SR.resw
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\obj\x86\Debug\FxResources.System.Globalization.Extensions.SR.resw
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\obj\x86\Debug\FxResources.System.IO.Compression.SR.resw
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\obj\x86\Debug\FxResources.System.IO.Compression.ZipFile.SR.resw
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\obj\x86\Debug\FxResources.System.IO.IsolatedStorage.SR.resw
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\obj\x86\Debug\FxResources.System.IO.UnmanagedMemoryStream.SR.resw
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\obj\x86\Debug\FxResources.System.Linq.SR.resw
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\obj\x86\Debug\FxResources.System.Linq.Expressions.SR.resw
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\obj\x86\Debug\FxResources.System.Linq.Parallel.SR.resw
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\obj\x86\Debug\FxResources.System.Linq.Queryable.SR.resw
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\obj\x86\Debug\FxResources.System.Net.Http.SR.resw
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\obj\x86\Debug\FxResources.System.Net.NameResolution.SR.resw
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\obj\x86\Debug\FxResources.System.Net.NetworkInformation.SR.resw
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\obj\x86\Debug\FxResources.System.Net.Requests.SR.resw
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\obj\x86\Debug\FxResources.System.Net.WebHeaderCollection.SR.resw
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\obj\x86\Debug\FxResources.System.Net.WebSockets.SR.resw
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\obj\x86\Debug\FxResources.System.Net.WebSockets.Client.SR.resw
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\obj\x86\Debug\FxResources.System.Numerics.Vectors.SR.resw
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\obj\x86\Debug\FxResources.System.ObjectModel.SR.resw
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\obj\x86\Debug\FxResources.System.Private.DataContractSerialization.SR.resw
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\obj\x86\Debug\FxResources.System.Private.ServiceModel.SR.resw
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\obj\x86\Debug\FxResources.System.Reflection.DispatchProxy.SR.resw
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\obj\x86\Debug\FxResources.System.Reflection.Metadata.SR.resw
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\obj\x86\Debug\FxResources.System.Runtime.Numerics.SR.resw
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\obj\x86\Debug\FxResources.System.Runtime.Serialization.Primitives.SR.resw
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\obj\x86\Debug\FxResources.System.Runtime.WindowsRuntime.SR.resw
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\obj\x86\Debug\FxResources.System.Runtime.WindowsRuntime.UI.Xaml.SR.resw
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\obj\x86\Debug\FxResources.System.Security.Claims.SR.resw
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\obj\x86\Debug\FxResources.System.Security.Cryptography.Algorithms.SR.resw
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\obj\x86\Debug\FxResources.System.Security.Cryptography.Cng.SR.resw
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\obj\x86\Debug\FxResources.System.Security.Cryptography.Encoding.SR.resw
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\obj\x86\Debug\FxResources.System.Security.Cryptography.Primitives.SR.resw
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\obj\x86\Debug\FxResources.System.Security.Cryptography.X509Certificates.SR.resw
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\obj\x86\Debug\FxResources.System.Text.Encoding.CodePages.SR.resw
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\obj\x86\Debug\FxResources.System.Text.RegularExpressions.SR.resw
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\obj\x86\Debug\FxResources.System.Threading.SR.resw
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\obj\x86\Debug\FxResources.System.Threading.Overlapped.SR.resw
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\obj\x86\Debug\FxResources.System.Threading.Tasks.Dataflow.SR.resw
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\obj\x86\Debug\FxResources.System.Threading.Tasks.Parallel.SR.resw
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\obj\x86\Debug\FxResources.System.Xml.ReaderWriter.SR.resw
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\obj\x86\Debug\FxResources.System.Xml.XDocument.SR.resw
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\obj\x86\Debug\FxResources.System.Xml.XmlDocument.SR.resw
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\obj\x86\Debug\FxResources.System.Xml.XmlSerializer.SR.resw
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\obj\x86\Debug\ZedGraph\ZedGraph.ZedGraph.ZedGraphLocale.tw.resw
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\obj\x86\Debug\ZedGraph\ZedGraph.ZedGraph.ZedGraphLocale.resw
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\obj\x86\Debug\ZedGraph\ZedGraph.ZedGraph.ZedGraphControl.resw
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\obj\x86\Debug\Microsoft.VisualStudio.DebuggerVisualizers\en-US\Resource.resw
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\obj\x86\Debug\Hololens UI.csproj.GenerateResource.Cache
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\obj\x86\Debug\priconfig.xml
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\obj\x86\Debug\priconfig.xml.intermediate
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\obj\x86\Debug\layout.resfiles
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\obj\x86\Debug\layout.resfiles.intermediate
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\obj\x86\Debug\resources.resfiles
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\obj\x86\Debug\resources.resfiles.intermediate
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\obj\x86\Debug\pri.resfiles
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\obj\x86\Debug\pri.resfiles.intermediate
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\obj\x86\Debug\qualifiers.txt
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\obj\x86\Debug\qualifiers.txt.intermediate
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\obj\x86\Debug\MultipleQualifiersPerDimensionFound.txt
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\obj\x86\Debug\ProjectArchitectures.txt
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\bin\x86\Debug\RabbitMQ.Client.dll
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\bin\x86\Debug\RabbitMQ.Client.pdb
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\bin\x86\Debug\RabbitMQ.Client.xml
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\bin\x86\Debug\RabbitMQ.Client.pri
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\obj\x86\Debug\RabbitMQ.Client.pri.xml
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\obj\x86\Debug\Hololens UI.csproj.CoreCompileInputs.cache
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\bin\x86\Debug\Newtonsoft.Json.dll
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\bin\x86\Debug\System.Console.dll
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\bin\x86\Debug\System.ComponentModel.Primitives.dll
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\bin\x86\Debug\System.ComponentModel.TypeConverter.dll
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\bin\x86\Debug\System.Runtime.InteropServices.RuntimeInformation.dll
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\bin\x86\Debug\System.Runtime.Serialization.Formatters.dll
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\obj\x86\Debug\FxResources.System.Console.SR.resw
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\obj\x86\Debug\FxResources.System.ComponentModel.Primitives.SR.resw
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\obj\x86\Debug\FxResources.System.ComponentModel.TypeConverter.SR.resw
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\obj\x86\Debug\FxResources.System.Runtime.InteropServices.RuntimeInformation.SR.resw
+D:\RANGGA\Kerjaan\TA\Hololens UI\Hololens UI Coba\Hololens UI\obj\x86\Debug\FxResources.System.Runtime.Serialization.Formatters.SR.resw
