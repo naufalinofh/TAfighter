@@ -15,8 +15,8 @@
 #include <string.h>
 #include <Wire.h>
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-#define stepPin 5 //pulse pin for controlling turret stepper GPIO 0 in NodeMCU
-#define dirPin 4 //pulse pin for controlling turret stepper  GPIO 2 in NodeMCU
+#define stepPin 4 //pulse pin for controlling turret stepper GPIO 4, D2 in NodeMCU
+#define dirPin 5 //pulse pin for controlling turret stepper  GPIO 5, D1 in NodeMCU
 
 //CONSTANT
 const float yaw_RES = 1.8/4 ; //nema 17 resolution is 1.8 degree, with gear ratio between motor and turret is 1:4
