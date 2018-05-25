@@ -15,8 +15,8 @@
 #include <string.h>
 #include <Wire.h>
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-#define stepPin 2 //pulse pin for controlling turret stepper
-#define dirPin 4 //pulse pin for controlling turret stepper
+#define stepPin 5 //pulse pin for controlling turret stepper GPIO 0 in NodeMCU
+#define dirPin 4 //pulse pin for controlling turret stepper  GPIO 2 in NodeMCU
 
 //CONSTANT
 const float yaw_RES = 1.8/4 ; //nema 17 resolution is 1.8 degree, with gear ratio between motor and turret is 1:4
@@ -30,11 +30,25 @@ bool step_dir = HIGH; //CW is HIGH
 
 // Update these with values suitable for your network.
 
+/* WIFI: ANHAR
 const char* ssid = "Titanic";
 const char* password = "samakayakhotspotitb";
 const char* mqtt_server = "192.168.0.111";
 const char* mqtt_userName = "anharaf";
 const char* mqtt_password = "anhar1234";
+*/
+
+/*WIFI:RanggaBro
+const char* ssid = "RanggaBro";
+const char* password = "rangga01";
+*/
+
+///WIFI: MIC Wifi
+const char* ssid = "MIC - Gigabit";
+const char* password = "micanjas";
+const char* mqtt_server = "167.205.7.226";    //IP server
+const char* mqtt_userName = "/turret:turret.tank030"; //username RMQ
+const char* mqtt_password = "TA171801030"; //Password RMQ
 
 WiFiClient espClient;
 PubSubClient client(espClient);
@@ -144,12 +158,12 @@ void loop() {
   if (now - lastMsg > 2000) {
     lastMsg = now;
     ++value;
-    snprintf(msg, 75, "hello world #%ld", value);
-    Serial.print("Publish message: ");
+    //snprintf(msg, 75, "hello world #%ld", value);
+    //Serial.print("Publish message: ");
     /*
     snprintf(msg,8,"y%d\n",yaw_act);    //the message transmitted to raspi is the alue of yaw act as a feedback
     */
-    Serial.println(msg);
+    //Serial.println(msg);
     client.publish("outTopic", msg);
   }
 }
