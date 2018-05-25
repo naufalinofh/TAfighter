@@ -1,1 +1,0 @@
-flow --model cfg/yolo.cfg --load bin/yolo.weights --demo camera --gpu 0.5
