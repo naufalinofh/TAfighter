@@ -1,0 +1,8 @@
+version: '2.1'
+
+services:
+  hololensui:
+    image: hololensui
+    build:
+      context: .\Hololens UI
+      dockerfile: Dockerfile
